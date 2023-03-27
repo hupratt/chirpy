@@ -245,6 +245,20 @@ These lines of code spin up a web server that binds to whichever unix port you w
 try running it yourself if you haven't already: `python app.py runserver -h 0.0.0.0 -p 8090`
 
 
+<div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
+
+<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/chirpy-a-simple-phishing-page-2023-03-27%2022-59-36.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+</div>
+
+Don't mind the keyring prompt that I ignored in the video above, the captured email + password can be found in the console logs as well as in the text log on the server as displayed on the video below:
+
+<div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
+
+<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/chirpy-a-simple-phishing-page-2023-03-27%2023-07-54.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+</div>
+
 ## Hosting
 The next step in our journey is to host this either on your infrastructure or the someone else's computer (commonly referred to as the cloud). I primarily use apache for everything so here is the vhost script that you will need to enable in apache. We can use certbot to self sign our own TLS certificates that will grant us with the iconic "green lock" to encrypt our communication. 
 
@@ -277,12 +291,6 @@ There are two types of configurations you could do. The easy route is to simply 
 </VirtualHost>
 
 ```
-<div style="position:relative; display:block; width: 100%; min-height:400px">
-
-<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/Rihab%20german%20lessons/2023-03-15%2019-40-20.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-</div>
-
 
 ## Conclusion
 As we saw in this example, hosting a phishing page is a lot easier than you would initially think. We were able to act as a middleman between instagram and the user with less than 200 lines of code. We also learned not to trust the website just because it has a green lock next to the URL bar and that the only cue taht could have tipped us off was on the URL itself. I wouldn't trust myself to read through each and every letter of every website I go to so here is what I recommend: 
