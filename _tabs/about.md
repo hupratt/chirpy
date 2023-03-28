@@ -37,4 +37,5 @@ A picture is worth a thousand words so [here is a link](https://portfolio.crafts
 
 I use Upptime's serverless app to monitor my web apps. It's currently hosted [on Github pages](https://github.com/hupratt/upptime/tree/gh-pages) so that I can avoid the cost of spinning up a new virtual machine or virtual private service (VPS) exclusively for it. How it works is pretty simple. The app pings my different endopints every 5 minutes [and updates this page accordingly](https://hupratt.github.io/upptime/). The svelte app re-builds itself on github servers thanks to the [Github actions](https://github.com/features/actions) feature which allows you to run code for free. Thank you microsoft for this awesome feature !
 
+28th of March 2023
 
