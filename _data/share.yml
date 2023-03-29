@@ -5,15 +5,15 @@ platforms:
   -
     type: Twitter
     icon: "fab fa-twitter"
-    link: "https://twitter.com/intent/tweet?text=TITLE&url=URL"
+    link: "https://twitter.com/intent/tweet?text=TITLE&url=https://chirpy.craftstudios.shop"
   -
     type: Facebook
     icon: "fab fa-facebook-square"
-    link: "https://www.facebook.com/sharer/sharer.php?title=TITLE&u=URL"
+    link: "https://www.facebook.com/sharer/sharer.php?title=TITLE&u=https://chirpy.craftstudios.shop"
   -
     type: Telegram
     icon: "fab fa-telegram"
-    link: "https://t.me/share/url?url=URL&text=TITLE"
+    link: "https://t.me/share/url?url=https://chirpy.craftstudios.shop&text=TITLE"
 
   # Uncomment below if you need to.
   # -
