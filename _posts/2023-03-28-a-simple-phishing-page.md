@@ -16,7 +16,7 @@ render_with_liquid: false
 
 _The best defense is a good offense_. Once you're able to write this up and host it yourself you'll get a good grasp of how this attack works and what to look out for to stay protected on the internet. Let's define phishing and what we intend to do today.
 
-`Phishing is a form of social engineering where attackers deceive people into revealing sensitive information or installing malware such as ransomware.` [`Wikipedia`](https://en.wikipedia.org/wiki/Phishing)
+<em>Phishing is a form of social engineering where attackers deceive people into revealing sensitive information or installing malware such as ransomware.</em> [`Wikipedia`](https://en.wikipedia.org/wiki/Phishing)
 
 ## Requirements
 
@@ -260,7 +260,7 @@ Don't mind the keyring prompt that I ignored in the video above, the captured em
 </div>
 
 ## Hosting
-The next step in our journey is to host this either on your infrastructure or the someone else's computer (commonly referred to as the cloud). I primarily use apache for everything so here is the vhost script that you will need to enable in apache. We can use certbot to self sign our own TLS certificates that will grant us with the iconic "green lock" to encrypt our communication. 
+The next step in our journey is to host this either on your infrastructure or on someone else's computer (commonly referred to as the cloud). I primarily use apache for everything so here is the vhost script that you will need to enable in apache. We can use certbot to self sign our own TLS certificates that will grant us with the iconic "green lock" to encrypt our communication. 
 
 There are two types of configurations you could do. The easy route is to simply proxy everything through the http protocol or use a WSGI module to handle the integration with apache. We don't plan on tweaking the efficiency of the threading of our web page so for simplicity sakes here is the proxy settings
 
@@ -293,7 +293,7 @@ There are two types of configurations you could do. The easy route is to simply 
 ```
 
 ## Conclusion
-As we saw in this example, hosting a phishing page is a lot easier than you would initially think. We were able to act as a middleman between instagram and the user with less than 200 lines of code. We also learned not to trust the website just because it has a green lock next to the URL bar and that the only cue taht could have tipped us off was on the URL itself. I wouldn't trust myself to read through each and every letter of every website I go to so here is what I recommend: 
+As we saw in this example, hosting a phishing page is a lot easier than you would initially think. We were able to act as a middleman between instagram and the user with less than 200 lines of code. We also learned not to trust the website just because it has a green lock next to the URL bar and that the only cue that could have tipped us off was on the URL itself. I wouldn't trust myself to read through each and every letter of every website I go to so here is what I recommend: 
 
 1. Use bookmarks and never click on links outside of those bookmarks
 2. I realize that the above is quite unpractical especially when we consider our children might not have the same dedication to security as we do. A much simpler approach would be to set up a local reverse DNS server that blocks out IPs related to advertisement and phishing. `Pihole` is one implementation of that service which I highly recommend. The learning curve is also extremely low so I encourage you to give it a try if you're a tinkerer like me
