@@ -18,7 +18,7 @@ _The best defense is a good offense_. Once you're able to write this up and host
 
 <em>Clickjacking (classified as a user interface redress attack or UI redressing) is a malicious technique of tricking a user into clicking on something different from what the user perceives, thus potentially revealing confidential information or allowing others to take control of their computer while clicking on seemingly innocuous objects, including web pages.</em> [`Wikipedia`](https://en.wikipedia.org/wiki/Clickjacking).
 
-As an example, click jacking allows attackers to build iframes on separate websites that are used to display a legitimate website. When done correctly, and if a user from the website comes across the malicious page on the internet, they won't be able to tell the difference unless they pay attention to the URL of the page. 
+As an example, click jacking allows attackers to build iframes on separate websites that are used to display a legitimate website. When done correctly, and if a user from the website comes across the malicious page on the internet, they won't be able to tell the difference unless they pay attention to the URL of the page. The attacker can then embed malicious forms into his website and intercept your login/password or anything else you type on there.
 
 ## Requirements
 
