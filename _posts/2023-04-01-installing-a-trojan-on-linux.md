@@ -2,8 +2,8 @@
 title: A simple trojan for Linux
 author: hugo
 date: 2023-04-03 15:11:00 +0200
-categories: [Tutorial, programming]
-tags: [systemd, hacking, python, c++]
+categories: [Tutorial, security]
+tags: [systemd, hacking, python, cmake]
 render_with_liquid: false
 ---
 
