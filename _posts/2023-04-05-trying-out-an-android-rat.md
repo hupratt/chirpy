@@ -22,9 +22,13 @@ To perform this attack you:
 1. do not need to "root" your device. You should be able to connect your phone via USB or wifi and drag and drop the executable onto the phone without prior phone configuration.
 2. will need to have physical access (pin number) to the phone you're targeting because Android is able to identify it as a trojan and tries to prevent you from installing it.
 
-## Netflix
+## Inception
 
-I got inspired to write this blog post after watching a disturbing movie on netflix. "Unlocked" is the story of a korean psychopath who installs malware on a girl's lost cell phone and uses it to track her every move. The movie or the plot was not great but this idea stuck with me.
+I got inspired to write this blog post after watching a disturbing movie on netflix. "Unlocked" is the story of a korean psychopath who installs malware on a girl's lost cell phone and uses it to track her every move. The movie and the plot were not great but this idea stuck with me. It can't be that easy to install a tracker on a phone? right?
+
+It took me a while to understand what tools and software exist out there. My mind naturally gravitated to the Google store first. I figured that the easiest and frictionless solution you could ever wish for would be on the App store. After some digging I finally discovered Airdroid which provides a lot of those malware features like GPS tracking and screen monitoring. The only two problems I had with it is that it's not a stealth solution, the app notifies the user that it's running on the background, and your data is sent to god knows who's server out there on the internet. I set it upon myself to find "better". A couple of weeks later I came to the realization that all of my deep web searches were in vain and got burnt out from clicking through all the online scams down there. The few forums I actually found looked like they came out from the 1990's which gave me nostalgia and some happy memories of what the early web looked like but ultimately it did not provide any answers.
+
+After a couple of days I finally found the right keyword to search on google and came accross 10 potential candidates for this blog post. My mind finally settled on one called "TheFatRat" and "AndroRat".
 
 ## Strategy
 
@@ -98,6 +102,10 @@ I like to add a small clip to showcase what was said so far. Enjoy !
 <iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/2023-04-05%2022-31-03.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen sandbox></iframe>
 
 </div>
+
+## Conclusion
+
+I started this pen-tester/security journey recently and it feels like oppening a pandora's box. The modern hacker has so many tools available at his disposal and the scary part is that I needed absolutely no programming knowledge to pull this off. A bit of curiosity sprinkled with some persistence here and there did the trick. If this blog post could convey one idea it is this: be extremely careful with the apps you install even when they come from the app store. 
 
 Thank you for reading 
 
