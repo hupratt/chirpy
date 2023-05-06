@@ -193,11 +193,11 @@ sniffer("REPLACE_WITH_YOUR_NIC")
 
 ## Step 3 of 3: Spoof DNS requests
 
-Our final step will be to serve our [custom netflix phishing page](https://chirpy.craftstudios.shop/posts/a-simple-phishing-page/) that I shared a couple of weeks ago. Instead of going to the actual yahoo page the user is served a fake login page at www.yahoo.com that captures credentials and then redirects to the actual website
+Our final step will be to serve the [custom phishing page](https://chirpy.craftstudios.shop/posts/a-simple-phishing-page/) that I shared a couple of weeks ago. Instead of going to the actual yahoo page the user is served a fake login page at www.yahoo.com that captures credentials and then redirects to the actual website
 
-The implementation below can seem daunting at first but if you understand the heuristics it becomes easier to understand. if you don't know how socket programming works bear with me. 
+The implementation below can seem daunting at first but if you understand the idea it becomes easier to read the code. If you don't know how socket programming works bear with me. 
 
-So our task is to replace our tablet's DNS request with ours except it's not as easy as deleting or filtering the existing one. If you do that the socket will close the connection. The workaround is to stall the original DNS request into a "netfilterqueue" queue. This delay allows us to get a faster round trip to the yahoo servers and ensuring our request gets passed to the tablet.
+So our task is to replace our tablet's DNS request with ours except it's not as easy as deleting or filtering the existing one. If you do that the socket will close the connection. The workaround is to stall the original DNS request into a "netfilterqueue" queue. This delay allows us to create our own DNS request and get a faster round trip to the yahoo servers thus ensuring our spoofed request gets passed to the tablet instead of the original one.
 
 
 ```python
