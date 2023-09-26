@@ -27,7 +27,7 @@ Let's start with an overview of my lab.
 
 ## The self hosted programs I run
 
-A picture is worth a thousand words so [here is a link](https://portfolio.craftstudios.shop/) to an overview of some of my projects.
+A picture is worth a thousand words so [here is a link](https://www.craftstudios.shop/) to an overview of some of my projects.
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
 
