@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-Hi, welcome to chirpy thanks for stopping by. I'm a software enthusiast that tinkers with malware, content management systems, devops tools and anything I find useful to my day to day life. I run and host roughly ~ 20 web apps on my own infrastructure. Infrastucture here is a just a fancy word for a small [6 watt micro computer](https://www.shuttle.eu/en/products/slim/ds10u/spec) with two Intel Celeron CPUs running @ 1.800GHz. I needed something that is as power efficient as possible while also being able to handle the workloads I intend to run in the future. In the next two sections I'll go over the home lab I built up over the years and the projects I forked or bootstraped myself.
+Hi, welcome to chirpy thanks for stopping by. I'm a software enthusiast that tinkers with malware, content management systems, devops tools and anything I find useful to my day to day life. I run and host roughly ~ 20 web apps on my own infrastructure. Infrastucture here is a just a fancy word for a small [65 W micro computer](https://www.shuttle.eu/en/products/slim/ds10u/spec) with two Intel Celeron CPUs running @ 1.800GHz. I needed something that is as power efficient as possible while also being able to handle the workloads I intend to run in the future. In the next two sections I'll go over the home lab I built up over the years and the projects I forked or bootstraped myself.
 
 ## The home lab
 
@@ -21,7 +21,7 @@ Let's start with an overview of my lab.
 
 1. I dont have independent lifecycle needs between my apps. If I decide to update postgres I'll do it for all my apps at the same time 
 2. I can manage all my workers to scale with apache. Systemd allows me to add workers easily. 
-3. If my app bottlenecks on RAM or CPU, installing another 1 Gb service on RAM is like spraying gasoline on a fire and the most common problem I run accross when I see everyone just "defaulting" into using Docker. 
+3. If my app bottlenecks on RAM or CPU, installing another 1 Gb service on RAM won't solve anything. Adding docker in this case would be like spraying gasoline on a fire. 
 4. I don't do service oriented architecture (SOA) or micro services because i lose the benefit of version control and being able to rollback on my mistakes 
 5. I use a similar environment to the target production so i dont need any fancy packaging system. I can see how they are useful in a team of devs and how easy they make lifecycle management in complex organizations but its hard to set up and tricky to debug with all that extra networking layer and configuration involved
 
