@@ -18,10 +18,10 @@ At first Ron, the shop owner, assumes it's blackmail and that Elliot is in it fo
 These exploits greatly inspired me to take a deep dive into this world of social engineers, penetration tests and malware. The video below is an extract of his confrontation with Ron
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/Elliot%20Hacks%20A%20Pedophile%20Mr.%20Robot.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/Elliot%20Hacks%20A%20Pedophile%20Mr.%20Robot.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-Getting a foothold into a network is one of the first steps in compromising your target. I've written a blog post that explains how to do deploy those on Android and linux systems [here](https://chirpy.craftstudios.shop/posts/trying-out-an-android-rat/) and [here](https://chirpy.craftstudios.shop/posts/installing-a-trojan-on-linux/)
+Getting a foothold into a network is one of the first steps in compromising your target. I've written a blog post that explains how to do deploy those on Android and linux systems [here](https://chirpy.thekor.eu/posts/trying-out-an-android-rat/) and [here](https://chirpy.thekor.eu/posts/installing-a-trojan-on-linux/)
 
 In this article I will go through one of the ways you can intercept traffic and spoof DNS queries to phish for credentials. The conclusion will focus on how to prevent this type of attack. Ready? Let's begin. 
 
@@ -193,7 +193,7 @@ sniffer("REPLACE_WITH_YOUR_NIC")
 
 ## Step 3 of 3: Spoof DNS requests
 
-Our final step will be to serve the [custom phishing page](https://chirpy.craftstudios.shop/posts/a-simple-phishing-page/) that I shared a couple of weeks ago. Instead of going to the actual yahoo page the user is served a fake login page at www.yahoo.com that captures credentials and then redirects to the actual website
+Our final step will be to serve the [custom phishing page](https://chirpy.thekor.eu/posts/a-simple-phishing-page/) that I shared a couple of weeks ago. Instead of going to the actual yahoo page the user is served a fake login page at www.yahoo.com that captures credentials and then redirects to the actual website
 
 The implementation below can seem daunting at first but if you understand the idea it becomes easier to read the code. If you don't know how socket programming works bear with me. 
 
@@ -250,7 +250,7 @@ if __name__ == '__main__':
 ## Video
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/dns%20spoof2.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/dns%20spoof2.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 ## Conclusion

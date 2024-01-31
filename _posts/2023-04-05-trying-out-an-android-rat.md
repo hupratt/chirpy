@@ -99,7 +99,7 @@ I like to add a small clip to showcase what was said so far. Enjoy !
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
 
-<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/2023-04-05%2022-31-03.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen sandbox></iframe>
+<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/2023-04-05%2022-31-03.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen sandbox></iframe>
 
 </div>
 

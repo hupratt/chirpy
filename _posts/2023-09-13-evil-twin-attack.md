@@ -15,7 +15,7 @@ render_with_liquid: false
 Can you think of a more dreadful business as weapons manufacturers? I would expect there to be some consensus on this in 2023 as well as some oversight and rules to whom you could sell and not sell to right? You wouldn’t want to help dictators and other bigwigs oppress minorities and dissidents. You would be surprised to know that not everyone agrees with this point of view of course. Check out this exclusive interview of an entrepreneur based in Greece that tells you exactly what he thinks of weaponized software and morality. It’s quite ironic to find a company violating people’s right to privacy in what is known as the birthplace of democracy. On the video below Tal Dilio was interviewed by Forbes and shows how easy it is to hijack someone’s phone. For a mere 9 million dollars you can buy this fully equipped van to spy on anyone within 500 meters and bypass whatsapp encryption.
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/A-Multimillionaire-Forbes.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/A-Multimillionaire-Forbes.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 
@@ -91,7 +91,7 @@ At this point you should be able to connect to the internet via this newly creat
 
 ## Networking
 
-Now that your target machine thinks it's connected to a router let's install another key component to the server acting as an access point: mitmproxy. "Mitm" stands for man in the middle and is an attack that we already covered previously [here](https://chirpy.craftstudios.shop/posts/man-in-the-middle-attack/). If I had to quickly summarize this previous article I would say I used ARP spoofing to serve my own website that would record credentials. What we'll do here today is in the same vein but it goes a step further by being able to capture data from any website without having to create a fake login page. 
+Now that your target machine thinks it's connected to a router let's install another key component to the server acting as an access point: mitmproxy. "Mitm" stands for man in the middle and is an attack that we already covered previously [here](https://chirpy.thekor.eu/posts/man-in-the-middle-attack/). If I had to quickly summarize this previous article I would say I used ARP spoofing to serve my own website that would record credentials. What we'll do here today is in the same vein but it goes a step further by being able to capture data from any website without having to create a fake login page. 
 After installing mitmproxy let's now redirect all the traffic going through our evil access point to our mitmproxy by creating the following ip tables rules:
 
 ```console
@@ -129,7 +129,7 @@ Just like in our previous showcases I like to complement the code with a use cas
 
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-<iframe width="100%" height="400px" src="https://youtube.craftstudios.shop/uploads/netgear/Videos/chirpy/evil%20twin.mp4
+<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/evil%20twin.mp4
 " title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 

@@ -33,7 +33,7 @@ Let's dive right into our web browser. Open up the Inspector tool within Chrome 
 
 ## Setting up the local environment
 
-Let's start off, [just like our previous exercise](https://chirpy.craftstudios.shop/posts/a-simple-phishing-page/), by creating, activating and installing flask on a new python environment.
+Let's start off, [just like our previous exercise](https://chirpy.thekor.eu/posts/a-simple-phishing-page/), by creating, activating and installing flask on a new python environment.
 
 ```console
     [waz@localhost]# virtualenv env
