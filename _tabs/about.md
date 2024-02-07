@@ -39,3 +39,17 @@ I use Upptime's serverless app to monitor my web apps. It's currently hosted [on
 
 28th of March 2023
 
+##################################################################################################################
+
+
+update: The home lab has grown and evolved since 2023 so I thought I would map out what's new. The network significanlty improved 
+compared to last year since now I have a separated virtual network for all my front facing applications.
+
+![home-lab](/assets/img/about/Homelab.jpg){: width="100%"}
+
+Another significant change is my new love for iot devices which I have sprinkled around the house to light up doorway lights once 
+movement is detected or temperature and humidity sensors that allow me to contemplate my errors once i realize for example that
+I went on vacation and forgot to turn off the heater.
+
+
+7th of February 2024
