@@ -54,4 +54,4 @@ I went on vacation and forgot to turn off the heater.
 
 On the hypervisor side I managed to acquire a similar machine to the existing one. I did not build a cluster because it allows me to play around with the networking more freely. Having corosync running imposes a lot of restrictions and they outweigh the benefits of setting up a cluster so I'll keep those separate for now. This effectively means that I can have a productive and a test system that makes my services available even during downtime. Moving VMs from one host to the other takes a couple of hours because I intend to use nightly backups on the NAS to move machines around soI am limited to megabit transfer speeds. Despite the old hardware I happy with the result. 
 
-![home-lab](/assets/img/about/Homelab.drawio.jpg){: width="100%"}
+![home-lab](/assets/img/about/Homelab.drawio.png){: width="100%"}
