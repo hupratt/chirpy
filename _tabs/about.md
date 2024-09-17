@@ -60,6 +60,14 @@ On the hypervisor side I managed to acquire a similar machine to the existing on
 
 ![home-lab](</assets/img/about/21u rack.jpeg>){: width="100%"}
 
-The network has gotten a complete overhaul once again. There are now two cat7 cables and a fibre connection going downstairs. Here's a small glimpse at what's changed.
+The network has gotten a complete overhaul once again. There are now two cat7 cables and a fibre connection going from my office to the basement. Here's a small glimpse at what's changed.
+
+Old gear is highly deflationary so I could find some pretty good deals and repurposed some of it to fit my use case. The core of the network is on the top of the rack with a Sophos SG135 running pfsense. I originally bought a dirt cheap UTM220 Sophos firewall to act as my router and firewall but unfortunately the power consumption at idle on this old hardware led me to throw out the mainboard and repurpose the chassis to house my two small 8 port switches.
+
+The 2 DL380 gen9 servers and the poweredge R720 will be my main production cluster. I plan to run a ceph cluster on that hardware once I get some proper network cards or try to go the SAN route with my fiber QLogic Sanbox 3810 switch on the bottom. I've had the chance to play around with the Fujitsu Emulex cards but unfortunately Broadcom only supports windows 10 drivers and my motherboard doesn't support PCI passthrough to an ubuntu 20.04 VM so I couldn't reap the benefits of fast backups at gigabit speeds yet. Those three servers are running SAS HDD's so let's see what speeds I get. 
+
+The supermicro and the dell R510 are my only servers that house 3.5 inch HDD's. The supermicro houses all of my rsync backups and the Dell is the cold storage running ZFS. The backups are triggered manually but I intend to spin up a proxmox backup VM that syncs the data between these two backup servers.
+
+The cisco catalyst PoE switch is largely overkill especially in terms of power consumption so i'll turn this one on once I get my own house and get proper cabling around the house that doesn't make it look like some mad man's house. There are 3 PoE standards out there so I'll have to make sure that my switch supports the camera's requirements.
 
 ![home-lab](/assets/img/about/Homelab-VLAN.jpg){: width="100%"}
