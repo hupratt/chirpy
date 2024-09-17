@@ -56,7 +56,7 @@ On the hypervisor side I managed to acquire a similar machine to the existing on
 
 ![home-lab](/assets/img/about/Homelab.drawio.png){: width="100%"}
 
-17th of September 2024 update: Bigger, better, faster, stronger. 
+17th of September 2024 update: Bigger, better, faster, stronger. Shout out to [Kj Networx GmbH](https://kj-networx.net/) for selling those switches at a very good price. 
 
 ![home-lab](</assets/img/about/21u rack.jpeg>){: width="100%"}
 
@@ -69,5 +69,7 @@ The 2 DL380 gen9 servers and the poweredge R720 will be my main production clust
 The supermicro and the dell R510 are my only servers that house 3.5 inch HDD's. The supermicro houses all of my rsync backups and the Dell is the cold storage running ZFS. The backups are triggered manually but I intend to spin up a proxmox backup VM that syncs the data between these two backup servers.
 
 The cisco catalyst PoE switch is largely overkill especially in terms of power consumption so i'll turn this one on once I get my own house and get proper cabling around the house that doesn't make it look like some mad man's house. There are 3 PoE standards out there so I'll have to make sure that my switch supports the camera's requirements.
+
+The fujitsu primergy with the green thumbs on the picture houses my k3s cluster. I've only recently dipped my fingers in the kubernetes space because it recently got introduced at work so I needed a playground that could help me bridge some knwoledge gaps and hopefully run the react docker projects, like Susanna's book store, into an autonomous environment that is able to auto scale up/down and provide zero downtime thanks to the k3s' ingress. Hopefully by next year I will be able to tweak and manage k8s by myself.
 
 ![home-lab](/assets/img/about/Homelab-VLAN.jpg){: width="100%"}
