@@ -58,11 +58,7 @@ On the hypervisor side I managed to acquire a similar machine to the existing on
 
 17th of September 2024 update: Bigger, better, faster, stronger. 
 
-<div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-
-<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/HarderBetter.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-</div>
+![home-lab](</assets/img/about/21u rack.jpeg>){: width="100%"}
 
 The network has gotten a complete overhaul once again. There are now two cat7 cables and a fibre connection going downstairs. Here's a small glimpse at what's changed.
 
