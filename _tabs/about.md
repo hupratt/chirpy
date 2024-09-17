@@ -52,6 +52,18 @@ I went on vacation and forgot to turn off the heater.
 
 26th of April 2024 update: On my last update I introduced VLANs on a subset of test systems. Vlans are now operational in production with proper firewalls rules. Linode was shutdown and the services were copied over to Hetzner due to cost reasons. 
 
-On the hypervisor side I managed to acquire a similar machine to the existing one. I did not build a cluster because it allows me to play around with the networking more freely. Having corosync running imposes a lot of restrictions and they outweigh the benefits of setting up a cluster so I'll keep those separate for now. This effectively means that I can have a productive and a test system that makes my services available even during downtime. Moving VMs from one host to the other takes a couple of hours because I intend to use nightly backups on the NAS to move machines around soI am limited to megabit transfer speeds. Despite the old hardware I happy with the result. 
+On the hypervisor side I managed to acquire a similar machine to the existing one. I did not build a cluster because it allows me to play around with the networking more freely. Having corosync running imposes a lot of restrictions and they outweigh the benefits of setting up a cluster so I'll keep those separate for now. This effectively means that I can have a productive and a test system that makes my services available even during downtime. Moving VMs from one host to the other takes a couple of hours because I intend to use nightly backups on the NAS to move machines around so I am limited to megabit transfer speeds. Despite the old hardware I happy with the result. 
 
 ![home-lab](/assets/img/about/Homelab.drawio.png){: width="100%"}
+
+17th of September 2024 update: Bigger, better, faster, stronger. 
+
+<div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
+
+<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/HarderBetter.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+</div>
+
+The network has gotten a complete overhaul once again. There are now two cat7 cables and a fibre connection going downstairs. Here's a small glimpse at what's changed.
+
+![home-lab](/assets/img/about/Homelab-VLAN.jpg){: width="100%"}
