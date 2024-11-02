@@ -76,15 +76,15 @@ At some point you will want to send those incremental changes to a backup system
 The first thing we will do is mount the btrfs system into /mnt and to make the parent subvolume read only. Without doing this change you won't be able to send out your snapshots
 
 ```console
-btrfs property set -ts /mnt/home ro true
-btrfs property set -ts /mnt/root ro true
+[root@nb-hpratt /]# btrfs property set -ts /mnt/home ro true
+[root@nb-hpratt /]# btrfs property set -ts /mnt/root ro true
 
 ```
 
 Make sure openssh-server is installed on the target backup VM and send the snapshots with this one liner
 
 ```console
-btrfs send -p /mnt/home /mnt/home/.snapshot/@snapshot_20241102 | ssh root@10.10.85.171 "btrfs receive /home/.snapshot"
+[root@nb-hpratt /]# btrfs send -p /mnt/home /mnt/home/.snapshot/@snapshot_20241102 | ssh root@10.10.85.171 "btrfs receive /home/.snapshot"
 ```
 
 What this does is send over all of the incremental changes that were done since you imaged the source system and send them over SSH to your backup system. 
@@ -92,7 +92,7 @@ What this does is send over all of the incremental changes that were done since 
 Now repeat the process for the root directory
 
 ```console
-btrfs send -p /mnt/root /mnt/root/.snapshot/@snapshot_20241102 | ssh root@10.10.85.171 "btrfs receive /root/.snapshot"
+[root@nb-hpratt /]# btrfs send -p /mnt/root /mnt/root/.snapshot/@snapshot_20241102 | ssh root@10.10.85.171 "btrfs receive /root/.snapshot"
 ```
 
 You now have two perfectly synchronized systems. The only thing you would need to do on the target backup system to use the latest version is to 1. change the fstab file, 2. allow read/write on the snapshots and 3. reboot:
@@ -120,19 +120,19 @@ UUID=0df06d0a-b446-4da4-92fe-43b0e54aab54 /home                   btrfs   subvol
 - allow read/write on the snapshots
 
 ```console
-btrfs property set -ts /home/.snapshot/@snapshot_20241102 ro false
-btrfs property set -ts /root/.snapshot/@snapshot_20241102 ro false
+[root@nb-hpratt /]# btrfs property set -ts /home/.snapshot/@snapshot_20241102 ro false
+[root@nb-hpratt /]# btrfs property set -ts /root/.snapshot/@snapshot_20241102 ro false
 
 ```
 
 - reboot
 
 ```console
-shutdown -r 
+[root@nb-hpratt /]# shutdown -r 
 ```
 
 ```console
-reboot
+[root@nb-hpratt /]# reboot
 ```
 
 Congratulations, you have just updated the target backup system into today's 2nd of November 2024 snapshot
