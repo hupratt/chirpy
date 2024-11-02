@@ -18,7 +18,7 @@ In this guide we will delve into how to keep btrfs in sync with a backup system 
 
 So as we start out in our journey here is what our subvolumes look like:
 
-```
+```console
 [root@nb-hpratt /]# btrfs subv list /
 ID 256 gen 255550 top level 5 path root
 ID 257 gen 255551 top level 5 path home
@@ -26,7 +26,7 @@ ID 257 gen 255551 top level 5 path home
 
 And here is what our fstab looks like:
 
-```
+```console
 #
 # /etc/fstab
 # Created by anaconda on Mon Nov  6 15:18:08 2023
@@ -49,7 +49,7 @@ Both root and home subvolumes were imaged on the 27th of October so the source s
 
 To achieve syncronization you will want to create read only snapshots of your two subvolumes by running these two commands:
 
-```
+```console
 [root@nb-hpratt /]# btrfs subvolume snapshot -r /home/ /home/.snapshot/@snapshot_20241102
 Create a readonly snapshot of '/home/' in '/home/.snapshot/@snapshot_20241102'
 [root@nb-hpratt /]# btrfs subvolume snapshot -r / /root/.snapshot/@snapshot_20241102
@@ -59,7 +59,7 @@ Create a readonly snapshot of '/' in '/root/.snapshot/@snapshot_20241102'
 
 Which now added those two snapshots into your list of subvolumes
 
-```
+```console
 [root@nb-hpratt /]# btrfs subv list /
 ID 256 gen 255569 top level 5 path root
 ID 257 gen 255569 top level 5 path home
@@ -75,7 +75,7 @@ At some point you will want to send those incremental changes to a backup system
 
 The first thing we will do is mount the btrfs system into /mnt and to make the parent subvolume read only. Without doing this change you won't be able to send out your snapshots
 
-```
+```console
 btrfs property set -ts /mnt/home ro true
 btrfs property set -ts /mnt/root ro true
 
@@ -83,7 +83,7 @@ btrfs property set -ts /mnt/root ro true
 
 Make sure openssh-server is installed on the target backup VM and send the snapshots with this one liner
 
-```
+```console
 btrfs send -p /mnt/home /mnt/home/.snapshot/@snapshot_20241102 | ssh root@10.10.85.171 "btrfs receive /home/.snapshot"
 ```
 
@@ -91,15 +91,15 @@ What this does is send over all of the incremental changes that were done since 
 
 Now repeat the process for the root directory
 
-```
+```console
 btrfs send -p /mnt/root /mnt/root/.snapshot/@snapshot_20241102 | ssh root@10.10.85.171 "btrfs receive /root/.snapshot"
 ```
 
 You now have two perfectly synchronized systems. The only thing you would need to do on the target backup system to use the latest version is to 1. change the fstab file, 2. allow read/write on the snapshots and 3. reboot:
 
-1. change the fstab file
+- change the fstab file
 
-```
+```console
 #
 # /etc/fstab
 # Created by anaconda on Mon Nov  6 15:18:08 2023
@@ -117,19 +117,21 @@ UUID=0df06d0a-b446-4da4-92fe-43b0e54aab54 /home                   btrfs   subvol
 
 ```
 
-2. allow read/write on the snapshots
+- allow read/write on the snapshots
 
-```
+```console
 btrfs property set -ts /home/.snapshot/@snapshot_20241102 ro false
 btrfs property set -ts /root/.snapshot/@snapshot_20241102 ro false
 
 ```
 
-3. reboot
+- reboot
 
-```
+```console
 shutdown -r 
-or 
+```
+
+```console
 reboot
 ```
 
