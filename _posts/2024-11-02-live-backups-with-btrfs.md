@@ -9,8 +9,9 @@ render_with_liquid: false
 
 ## Intro: Backup and restore with btrfs snapshots
 
-Most tutorials and guides out there around btrfs focus on snapshots as a way to recover missing data on the same machine. 
-Some guides explain how to keep a backup of a btrfs system with Timeshift and other tools but would it be possible to do it without extra bloatware?
+You're working from home and forgot your laptop at work? You want to go on a trip and want a way to use your laptop without bringing it with you? Well now you can. I have a replica/backup machine on my servers that is literally a one to one copy of my laptop. I've been meaning to do this for a while hence so I prepared this a year ago when I got my workstation by setting up btrfs. 
+
+Most tutorials and guides out there around btrfs focus on snapshots as a way to recover missing data on the same machine. But what if I just want to keep a backup in sync with my work laptop? Some guides explain how to store a backup of a btrfs system with Timeshift but fail to answer this question. I would prefer a solution that does not involve extra bloatware that is not even properly maintained.
 
 In this guide we will delve into how to keep btrfs in sync with a backup system which we have previous imaged into a virtualized proxmox VM. We will be sending snapshots of the source system into the virtualized copy of the system every day to simulate daily use. In the end we will restore the backup system to the most up to date version of the source system by applying the latest snapshot.
 
