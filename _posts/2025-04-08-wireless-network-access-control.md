@@ -1,5 +1,5 @@
 ---
-title: Wireless network Access Control with 802.1x
+title: SSO part 1 Wireless network Access Control with 802.1x
 author: hugo
 date: 2025-04-08 09:11:00 +0200
 categories: [Tutorial, infrastructure]
@@ -7,7 +7,7 @@ tags: [SSO, active-directory]
 render_with_liquid: false
 ---
 
-## SSO part 1: Wireless network Access Control with 802.1x
+## Introduction
 
 I thought it might be cool to share some of the things I've been working on so far. This article is the first in the series where I try to break silos and integrate my systems into a single domain.
 
