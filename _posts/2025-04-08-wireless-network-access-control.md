@@ -136,7 +136,7 @@ root@radius:$ nano /etc/samba/smb.conf
 Authenticate as a domain administrator over kerberos
 
 ```bash
-root@radius:$ /home/celal# kinit Administrator
+root@radius:$ kinit Administrator
 Password for Administrator@MYDOMAIN.COM:
 ```
 
