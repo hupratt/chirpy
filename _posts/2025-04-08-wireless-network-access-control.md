@@ -127,7 +127,7 @@ root@radius:$ nano /etc/samba/smb.conf
     dns_lookup_kdc = true
 
 [realms]
-    LOC1.ADATA.DE = {
+    MYDOMAIN.COM = {
         admin_server = YOUR.FQDN.COM
         kdc = YOUR.FQDN.COM
     }
