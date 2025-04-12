@@ -16,7 +16,7 @@ You could of course go with a no code option by self hosting a wiki solution but
 - the way machines are backed up 
 - how they are monitored
 - how is it accessed
-- what are the itnernal dependencies
+- what are the internal dependencies
 - what are the external dependencies
 - what is the runtime used
 
@@ -174,6 +174,8 @@ root@monitor:$ nano ./config/alert.rules
 ```
 
 The configuration above scrapes within regular intervals windows servers, windows clients, dns servers, uptime kuma instances, cadvisor endpoints for LXC containers and anything docker, node_exporter for any virtual machine related metrics and statuses. The alert.rules file is just a small excerpt of what can be monitored with prometheus. As I'm centralizing all of the alerting functions on grafana there are plenty more additional rules and SNMP traps that I've configured to make my network resilient through changes and do some regression testing.
+
+As a side note I have a working configuration to integrate SNMP targets like Synology servers into an prometheus that then gets fed into grafana for monitoring and alerting or a syslog proxy that is able to read pfsense logs in real time but I thought it would be too much for one article so I decided to ommit it here.
 
 ## Setting up nmap and grafana
 
