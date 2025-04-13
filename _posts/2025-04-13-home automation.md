@@ -1,5 +1,5 @@
 ---
-title: Building a CMDB with grafana and low code
+title: Home automation
 author: hugo
 date: 2025-04-12 09:11:00 +0200
 categories: [Tutorial, infrastructure]
