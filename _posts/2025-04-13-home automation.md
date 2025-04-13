@@ -1,7 +1,7 @@
 ---
 title: Home automation
 author: hugo
-date: 2025-04-12 09:11:00 +0200
+date: 2025-04-13 09:11:00 +0200
 categories: [Tutorial, infrastructure]
 tags: [home-automation, home-assistant, zigbee]
 render_with_liquid: false
