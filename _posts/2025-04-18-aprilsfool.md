@@ -17,7 +17,7 @@ My colleague had the brilliant idea of setting up a ceph cluster for our product
 
 ### ZFS mistake
 
-Woke up this morning to backup some important data into a backup server. As I ran my rsync script on one window and a log on another I was surprised to see that the progress would at some point simply freeze on me. 
+Woke up this morning to backup some important data into a backup server. As I ran my rsync script in a tmux session and was surprised to see that the logs were just frozen since an hour which is highly unusual since my files are rather small.
 
 The ring buffer would give me a lead on what to do next
 
