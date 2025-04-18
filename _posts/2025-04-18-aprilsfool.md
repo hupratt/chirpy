@@ -119,6 +119,6 @@ These two changes did the trick for me and the pool is now healthy again.
 
 #3 No matter how much documentation you have there will always be use cases you never seen before. Having a homelab with production applications is the only way I found to safely go through those use cases and learn from mistakes. No amount of certifications can replace the experience of rebuilding a cluster once a drive fails
 
-#4 I should look into re-installing and using more advanced partitions like btrfs or zfs. Zfs has the zfsreplication command that is apparently a lot faster than rsync. I did a bit of testing with [btrfs in this article](https://chirpy.thekor.eu/posts/live-backups-with-btrfs/) but I think I'll give ZFS a try some day
+#4 I should look into re-installing and using more advanced partitions like btrfs or zfs. Zfs has the zfsreplication command that is apparently a lot faster than rsync. I did a bit of testing with [btrfs in this article](https://chirpy.thekor.eu/posts/live-backups-with-btrfs/) but I think I'll give ZFS on my daily driver a try some day
 
 Thanks for sticking around and see you on the next one
