@@ -1,5 +1,5 @@
 ---
-title: Aprils fool
+title: April's fool
 author: hugo
 date: 2025-04-18 09:11:00 +0200
 categories: [Blogging]
