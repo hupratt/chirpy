@@ -121,4 +121,6 @@ These two changes did the trick for me and the pool is now healthy again.
 
 #4 I should look into re-installing and using more advanced partitions like btrfs or zfs. Zfs has the zfsreplication command that is apparently a lot faster than rsync. I did a bit of testing with [btrfs in this article](https://chirpy.thekor.eu/posts/live-backups-with-btrfs/) but I think I'll give ZFS on my daily driver a try some day
 
+#5 ```udevadm info --name=/dev/sdh | grep ID_SCSI_SERIAL``` would have done the trick and given me the drive's serial number
+
 Thanks for sticking around and see you on the next one
