@@ -4,7 +4,6 @@ author: hugo
 date: 2023-03-26 20:55:00 +0100
 categories: [Blogging]
 tags: [getting started]
-pin: true
 ---
 
 ## Prologue
