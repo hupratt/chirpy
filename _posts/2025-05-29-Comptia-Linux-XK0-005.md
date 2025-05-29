@@ -1,4 +1,13 @@
-# Comptia Linux+ (XK0-005) course notes
+---
+title: Comptia Linux+ (XK0-005) course notes
+author: hugo
+date: 2025-05-29 09:11:00 +0200
+categories: [MOOC]
+tags: [sysadmin, linux, comptia]
+pin: true
+---
+
+## Introduction
 
 This course is given by John McGovern on CBT nuggets. The purpose of this document is to summarize some of the key learnings I got from it.
 

@@ -4,7 +4,7 @@ author: hugo
 date: 2025-04-18 09:11:00 +0200
 categories: [Blogging]
 tags: [fail, zfs, ceph, proxmox]
-pin: true
+render_with_liquid: false
 ---
 
 ## Introduction
