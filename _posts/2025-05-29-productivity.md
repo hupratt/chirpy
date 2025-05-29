@@ -1,5 +1,5 @@
 ---
-title: productivity on gnu/linux
+title: Productivity on gnu/linux
 author: hugo
 date: 2025-05-29 09:11:00 +0200
 categories: [Blogging]
