@@ -4,7 +4,7 @@ author: hugo
 date: 2025-05-29 09:11:00 +0200
 categories: [MOOC]
 tags: [sysadmin, linux, comptia]
-pin: true
+render_with_liquid: false
 ---
 
 ## Introduction
