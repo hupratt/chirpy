@@ -11,8 +11,9 @@ pin: true
 
 I've spent long hours studying and refreshing my knowledge of linux in the past months so I feel I need to lighten up the atmosphere a bit and turn down the technical complexity. This article focuses on productivity with linux by going over my configuration and the tools I use to speed up my daily tasks.
 
-1. Zsh
 
+### 1. Command line: Zsh
+  
   I've added fuzzy history finder ```fzf``` to my ```.zshrc``` so that I can find a previous command quickly. 
 
   zsh (ohmyzsh package) also has tons of plugins for autocompletion. Some popular ones i'm using: 
@@ -26,9 +27,8 @@ I've spent long hours studying and refreshing my knowledge of linux in the past 
 
   ![posthog](/assets/img/posts/ohmyzsh.jpg){: width="100%"}
 
-
-2. Vscode
-
+### 2. Vscode
+  
   I mostly use my text editor for web development, scripting and writing markdown. Vscode and its shortcuts for easy text manipulation and editing is the ideal tool for me right now. I know that neovim is a big contender in this space but i'm not ready to dig that rabbithole just yet. Nor do I need to.
 
   I have some custom bindings to override the custom vscode key binds. You can save this json in any vscode project under .vscode/keybindings.json
@@ -93,34 +93,33 @@ I've spent long hours studying and refreshing my knowledge of linux in the past 
 
   ![keybinds](/assets/img/posts/keybinds.gif){: width="100%"}
 
-3. Window manager
-
+### 3. Window manager
+  
   X11 is not officially discontinued but it is being phased out in favor of Wayland. So I naturally gravitated towards Wayland and hyprland for my desktop/window manager
 
   ![keybinds](/assets/img/posts/hyprland.gif){: width="100%"}
 
-4. Clipboard history
-
+### 4. Clipboard history
+  
   I use a small bash script that calls the ```cliphist list``` command and the rofi menu to display them as a pop up
 
   ![keybinds](/assets/img/posts/clipboard.gif){: width="100%"}
 
-5. Thunderbird
-
+### 5. Thunderbird
+  
   Simply installing the desktop and mobile versions of the app brought me significant improvements to my calendar, email and contacts syncronization. Make sure you're using imaps so that once you read an email on one device marks them as read on all other devices. I haven't found a way to sync calendar and contacts on mobile because thunderbird does not support ir for now but it's not a "nice to have" feature so I guess I'll just do without it.
 
   ![keybinds](/assets/img/posts/thunderbird.gif){: width="100%"}
 
-
-6. Swaync
-
+### 6. Swaync
+  
   Having a notification center that allows you to control your music paired with a keyboard with media controls is an absolute must for me. You can also allow certain web applications that have PWA capabilities to send notifications to that pannel. Everything is handled for you by the browser so if these concepts seem foreign to you don't worry. Everything is already handled by your internet browser. 
 
   ![keybinds](/assets/img/posts/swaync.gif){: width="100%"}
 
 
-7. Tmux: sharing terminals with co-workers
-
+### 7. Tmux: sharing terminals with co-workers
+  
   Tmux is an absolute must have. You can also use it to keep background tasks running as I often forget about them and accidentally close the windows. If for instance you need to give root access to a coworker who does not have those permissions you can temporarily open a shell for him on a jump server. 
 
 
