@@ -159,7 +159,8 @@ It is usually a local service but you can use a DHCP relay in case there is no D
 
 Access layer has L2 switches
 
-![3tier arch](./images/3tier.jpg)
+  ![3tier arch](/assets/img/posts/3tier.jpg){: width="100%"}
+
 
 ## ip routing
 
