@@ -4,7 +4,7 @@ author: hugo
 date: 2025-07-13 09:11:00 +0200
 categories: [MOOC]
 tags: [sysadmin, networking, comptia]
-pin: true
+render_with_liquid: false
 ---
 
 ## Introduction
