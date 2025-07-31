@@ -9,33 +9,35 @@ render_with_liquid: false
 
 ## Introduction
 
-And another one in the box. Learned a lot of new concepts and it was also a great was to refresh my networking knowledge. This course is given by Keith Barker on CBT nuggets. The purpose of this document is to summarize some of the key learnings I got from 
+And another one in the box. Learned a lot of new concepts and it was also a great way to refresh my networking knowledge. This course is given by Keith Barker on CBT nuggets. The purpose of this document is to summarize some of the key learnings I got from the course.
 
 ## OSI Model
 
 1. Physical: copper, fibre, wifi, bluetooth, DSL, optical cable, coax cable
 1. Data Link: MAC address found with ARP
-1. Network: IP address
+1. Network: routing between networks, IP addresses
 1. Transport: Protocols include UDP, TCP, GRE
 1. Session: In the TCP/IP stack it is part of the Application layer 7
 1. Presentation: In the TCP/IP stack it is part of the Application layer 7
 1. Application
 
+  ![osi model](</assets/img/posts/osi 2.jpg>){: width="100%"}
+
 ## Network Topologies
 
 - Bus: coax cable connecting computers at 10Mb/s. 1 Frequency and max 200 meters. 1 device can speak at a time by sending a broadcast
-- Hub: Layer 1 device that repears the frames. It has the same disadvantage as a Bus because there is 1 collision domain. Each computer can either send or receive. Max speed should be 0.5 duplex speed
+- Hub: Layer 1 device that repeats the frames. It has the same disadvantage as a Bus because there is 1 collision domain. Each computer can either send or receive. Max speed should be 0.5 duplex speed
 - L2 Switch: smarter than a hub. One computer on the switch can communicate with another computer in the domain and there is no collision with other frames. 
 
 ## Network Types
 
-Peer to peer: emule, napster, uTorrent
-Client to server: web server
-Personal area network: NFC, bluetooth, infrared
-Campus area network: 3 tier architecture
-Metropolitan area network
+- Peer to peer: emule, napster, uTorrent
+- Client to server: web server
+- Personal area network: NFC, bluetooth, infrared
+- Campus area network: 3 tier architecture
+- Metropolitan area network
 
-## cables and connectors
+## Cables and connectors
 
 RJ45 has two standard: T568A(represented as A in the diagram below) and T568B(represented as B in the diagram below)
 
@@ -45,18 +47,21 @@ A  --  A
 PC -- L2 SW
 B  --  B
 
-PC -- PC
+PC -- PC (see diagram below)
 A  --  B
 
 When pin 1 on one side goes to pin 1 on the other side we call it a straight through cable. Otherwise it's a cross over cable
+
+  ![ethernet cable](</assets/img/posts/ethernet.png>){: width="100%"}
+
 
 ## Internet protocol
 
 3 public ipv4 addresses defined in the RFC 1918
 
-10.0.0.0 – 10.255.255.255 /8
-172.16.0.0 – 172.31.255.255 /12
-192.168.0.0 – 192.168.255.255 /16
+- 10.0.0.0 – 10.255.255.255 /8
+- 172.16.0.0 – 172.31.255.255 /12
+- 192.168.0.0 – 192.168.255.255 /16
 
 private ipv4 addresses are either handed out by DHCP or they are configured manually on the machine. To make private ip addresses accessible over the internet you'll either have to :
 
