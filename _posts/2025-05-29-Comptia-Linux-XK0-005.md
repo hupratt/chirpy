@@ -13,6 +13,8 @@ This course is given by John McGovern on CBT nuggets. The purpose of this docume
 
 ## Linux, Partitions, Disk
 
+Overview of the basics
+
 ### FHS: File Hierarchy Standard
 
 As opposed to windows systems, /home and /root could be in totally different physical locations whereas in Windows anything below C:\ drive belongs to the C:\ drive 
@@ -157,6 +159,8 @@ root@tutorial:$ journalctl --since today | grep -Ei "fail|error|panic"
 - nfs: insecure compared to samba, fast to setup on linux
 
 ## Utilities
+
+Let's go over some key utilities now
 
 ### Text utilities
 
