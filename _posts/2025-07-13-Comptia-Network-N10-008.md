@@ -42,12 +42,15 @@ And another one in the box. Learned a lot of new concepts and it was also a grea
 RJ45 has two standard: T568A(represented as A in the diagram below) and T568B(represented as B in the diagram below)
 
 PC -- L2 SW
+
 A  --  A
 
 PC -- L2 SW
+
 B  --  B
 
 PC -- PC (see diagram below)
+
 A  --  B
 
 When pin 1 on one side goes to pin 1 on the other side we call it a straight through cable. Otherwise it's a cross over cable
@@ -153,10 +156,15 @@ There is no DHCP and no ARP just neighbor sollicitation and neighbor adverstisem
 ## Application level services
 
 SMTP over StartTLS 587
+
 IMAP over StartTLS 143
+
 SMTP over SSL(TLS) 465
+
 IMAP over SSL(TLS) 993
+
 DHCP: discover, offer, request, acknowledgment
+
 the DHCP process goes through a three way handshake: syn, syn/ack, ack
 It is usually a local service but you can use a DHCP relay in case there is no DHCP server on the LAN
 
@@ -167,32 +175,32 @@ Access layer has L2 switches
   ![3tier arch](/assets/img/posts/3tier.jpg){: width="100%"}
 
 
-## ip routing
+## IP routing
 
 There are 3 ways routers learn about networks
 
-- By being connected directly
-- Static route: either default route or actual routing
-- dynamic routing protocol: depending on your switch
+1. By being connected directly
+1. Static route: either default route or actual routing
+1. dynamic routing protocol: depending on your switch
 
-1. Distance vector method: RIP
-2. Link state: OSPF
-3. IGP: interior gateway protocol
-
-1. RIP
+- Distance vector method: RIP
+- Link state: OSPF
+- IGP: interior gateway protocol
+- RIP
 
 uses udp/520. I'm not sure how to configure this in the unifi envronment that we have but you basically advertise the networks that you can reach so that other routers know how to reach it as well. 
 
 routers send multicast to this address 224.0.0.9
 
-2. OSPF
+- OSPF
 
 uses its own protocol #89.
 routers send multicast to this address 224.0.0.5 or 224.0.0.6
 
-## switching
+## Switching
 
-connecting a bunch of computers to a switch does not create a network by itself. You'll need a router to hand out IP addresses. In a 5 port L2 switch all of the broadcasts are sent to each physical interface. Each link is a full duplex connection which means we have 5 routes/collision domains. 
+If you're building a closed system like the network used for a ceph cluster to sync its data in a proxmox cluster then using an L2 switch to connect all your computers together could be enough.
+But it is not enough to route traffic to other networks. You'll need a router to hand out IP addresses and configure a gateway. In a 5 port L2 switch all of the broadcasts are sent to each physical interface. Each link is a full duplex connection which means we have 5 routes/collision domains. 
 
 ARP requests in this case are sent as a broadcast to everyone. PC1 for instance could advertise that it is looking for a mac address and a router that holds all of the mac addresses will then reply to that request. 
 
@@ -202,7 +210,7 @@ VLANs are layer two broadcast domains that use an 802.1Q tag (header) to signify
 
 There are two primary ways to set up VLANs depending on whether the segmentation is handled at the switch level or the host (OS/network interface)
 
-1. VLANs on Switches (Port-Based or Tagged VLANs)
+A. VLANs on Switches (Port-Based or Tagged VLANs)
 
 - Access Ports: Assigned to a single VLAN. The device connected to the port is unaware of the VLAN. All frames are untagged.
 
@@ -217,7 +225,7 @@ How it works:
 - Trunk ports connect to other switches or routers, carrying traffic for multiple VLANs.
 
 
-2. VLANs on Host Interfaces (Software/OS-Level VLAN Tagging)
+B. VLANs on Host Interfaces (Software/OS-Level VLAN Tagging)
 
 Overview:
 The host machine (Linux, Windows, etc.) is configured to tag network traffic itself using virtual interfaces.
@@ -237,7 +245,7 @@ Use case: Servers or VMs that need to be on multiple VLANs without needing separ
 
 ## Spanning tree protocol
 
-STP uses bridge id to decide which routes have priority and block parallel paths and avoid broadcast storms/loops
+STP uses a bridge id to decide which routes have priority to block parallel paths and avoid broadcast storms/loops
 You'll need to setup root guard/or bpdu filter to prevent hackers from claiming they have a new switch that has lower bridge port ids. There are other software security controls you can put in place to avoid users being able to trick an access port to become a trunk port or to block rogue DHCP servers.  
 
 ## QoS
@@ -246,7 +254,7 @@ Quality of service is a tag you set on a switch. Once the switch is under heavy 
 
 ## Redundancy
 
-you can have a virtual ip address that acts as a load balancer for your gateway. Your windows client thinks he's talking to one server but it's actually a load balancer. This can be achieved with FHRP First Hop Redundancy Protocol or VRRP (virtual router protocol)
+You can have a virtual ip address that acts as a load balancer for your gateway. Your windows client thinks he's talking to one server but it's actually a load balancer. This can be achieved with FHRP First Hop Redundancy Protocol or VRRP (virtual router protocol)
 
 ## Security
 
@@ -256,8 +264,8 @@ skipped
 
 when troubleshooting connectivity problems start by: 
 
-Start by pinging the default gateway if that works, ping the address you're trying to reach. 
+- Start by pinging the default gateway if that works, ping the address you're trying to reach. 
 
 ping by default on linux uses udp but you can use a flag to use icmp packets instead. 
 
-Is the network path going through a VPN tunnel? Or an SDN? In that case I would verify the MTU on those network adapters and make sure the values match along the tunnel. 
+- Is the network path going through a VPN tunnel? Or an SDN? In that case I would verify the MTU on those network adapters and make sure the values match along the tunnel. 
