@@ -11,23 +11,34 @@ render_with_liquid: false
 
 This course is given by John McGovern on CBT nuggets. The purpose of this document is to summarize some of the key learnings I got from it.
 
-## FHS File Hierarchy Standard
+## FHS: File Hierarchy Standard
 
 As opposed to windows systems, /home and /root could be in totally different physical locations whereas in Windows anything below C:\ drive belongs to the C:\ drive 
 
 If you ever want a hint type ```man hier```
 
 /etc configuration files
+
 /boot files needed to boot: kernel executable file (vmlinux), grub bootloader, initramdisk image loads the initial modules and drivers 
+
 /lib libraries used for the OS
+
 /dev device files like keyboards, usb drives, terminals
+
 /proc virtual file system (in memory) has information relating to running processes, info related to hw statistics
+
 /sys  virtual file system (in memory) has kernel modules, and driver information, power management, info about attached blocked devices
+
 /home contains user directories
+
 /tmp relaxed permissions, tmp files get deleted on boot
+
 /root home directory of the root user
+
 /opt optional directory to store third party programs you build from source
+
 /sbin directory to store system level programs 
+
 /usr/bin local user programs
 
 you can pipe the errors to /dev/null by doing
@@ -36,20 +47,20 @@ you can pipe the errors to /dev/null by doing
 
 ## Formatting
 
-Before using a disk you need to either format it with MBR or GPT. MBR splits your disk into 512 bytes with the first sector is dedicated to the master boot record. By choosing MBR you are limiting the maximum size of your partitions to 2Tb. Another limit is you can create up to 4 partitions.
+Before using a disk you need to either format it with MBR or GPT partition table. MBR splits your disk into 512 bytes with the first sector is dedicated to the master boot record. By choosing MBR you are limiting the maximum size of your partitions to 2Tb. Another limit is you can create up to 4 partitions.
 
 ## Boot
 
-1. uefi triggers the POST
+1. UEFI triggers the POST
 1. Power on Self Test or POST is done
-1. uefi loads the grub bootloader. UEFI ships with secure boot which allows you to boot into your machine in case for example your machine gets compromised with a virus.
-1. initrd: ramdisk loads the necessary kernel modules so that the linux kernel can load
-1. kernel then starts sysvinit or systemd 
-1. services will start depending on the boot level. Some services will wait on the network, others on boot, etc
+1. UEFI loads the grub bootloader. UEFI ships with secure boot which allows you to boot into your machine in case for example your machine gets compromised with a virus.
+1. initrd: ramdisk loads the necessary kernel modules/shared objects (.so) so that the linux kernel can load
+1. Kernel then starts sysvinit or systemd 
+1. Services will start depending on the boot level. Some services will wait on the network, others on boot, etc
  
 If you want to have a dual boot setup you would edit the /boot/grub/grub.cfg on debian or /boot/grub2/grub.cfg on red hat. On these two distros the process of changing the boot configuration will be slightly different. Whatever distro you're running be aware that you shouldn't edit /boot files directly and go through the /etc conf files instead. 
 
-When a computer boots up and does not have a fixed IP address it sends out an ARP request to receive an ip address. Now either the DHCP server (which can be a firewall for example) has a MAC address reservation or it assigns one from a DHCP pool for a certain time (also known as lease time). Once the lease time is expired the server has the option to re-assign it in case the IP is not currently in use.
+When a computer boots up and does not have a fixed IP address it sends out a DHCP request to receive an ip address. Now either the DHCP server (which can be a firewall for example) has a MAC address reservation or it assigns one from a DHCP pool for a certain time (also known as lease time). Once the lease time is expired the server has the option to re-assign it in case the IP is not currently in use.
 
 ## Boot sources
 
@@ -97,7 +108,7 @@ root@tutorial:$ dmesg -T | grep -Ei "fail|error|panic"
 
 ```
 
-once you find something interesting you can dig into it. The -C flag appends line numbers to the output
+once you find something interesting you can dig into it. The -C 3 flag prints 3 lines of output context
 
 ```bash
 root@tutorial:$ grep -C 3 "[Fri Apr 18 09:54:05 2025] nvidia" dmesg
@@ -143,11 +154,12 @@ root@tutorial:$ journalctl --since today | grep -Ei "fail|error|panic"
 
 - nfs: insecure compared to samba, fast to setup on linux
 
-## text utilities
+## Text utilities
 
-1. awk
 
-does some of the same functions like grep with regex. Additionally it can: 
+1\. awk
+
+Does some of the same functions like grep with regex. Additionally it can: 
 - manipulate tabular or csv data
 - target columns in files. You can add it to your grep pipe to filter the columns/lines you want
 - sum a column or filter numeric values. This example shows all attached block devices that are 100 Gb or more
@@ -160,15 +172,16 @@ root@tutorial:$ awk '!/^#/ && $12 == 503' u_ex250527.log | sort -u # print lines
 
 ```
 
-2. sed
+2\. sed
 
-the stream editor. Usage ```sed -i "s/Scotland/UK/g" file.txt``` removes all instances of Scotland in the file.txt and replaces it with UK
+The stream editor. Usage ```sed -i "s/Scotland/UK/g" file.txt``` removes all instances of Scotland in the file.txt and replaces it with UK.
+```sed -i "s|8/10|10/10|g" file.txt``` would work as well and i sparticularly useful when the command contains the character: / like the given example
 
-3. printf
+3\. printf
 
-useful for string formatting in bash scripting
+Useful for string formatting in bash scripting
 
-4. vim
+4\. vim
 
 When using command mode:
 
@@ -188,9 +201,9 @@ When using insert mode:
 
 ## Compression and archiving
 
-1. gzip
+1\. gzip
 
-tar archives, it does not actually compress anything. This is why you usually combine it with gzip with commands like ```tar -cvzf Documents.tgz Documents```
+.tar archives don't actually compress anything. This is why you usually combine it with gzip with commands like ```tar -cvzf Documents.tgz Documents```
 
 Compress a file and delete the txt file
 
@@ -210,7 +223,7 @@ this command decompresses textfile.txt.gz into textfile.txt and deletes the text
 root@tutorial:$ gunzip -v textfile.txt.gz
 ```
 
-2. bzip2
+2\. bzip2
 
 slower than gzip but higher compression ratios
 
@@ -232,7 +245,7 @@ this command decompresses textfile.txt.bz2 into textfile.txt and deletes the tex
 root@tutorial:$ bunzip2 -v textfile.txt.bz2
 ```
 
-3. xz
+3\. xz
 
 higher compression ratio compared to bzip and gzip
 
@@ -255,7 +268,7 @@ root@tutorial:$ unxz -v textfile.txt.xz
 ```
 
 
-4. zip
+4\. zip
 
 is supported on windows
 
@@ -284,13 +297,13 @@ this command decompresses test.zip
 root@tutorial:$ unzip test.zip
 ```
 
-5. tar
+5\. tar
 
 ```tar -xvzf <tarball> ``` to decompress a tarball compressed with gzip
 ```tar -xvzf <tarball> -C /tmp``` to decompress a tarball compressed with gzip into the tmp directory
 ```tar -cvzf tarball.tgz directory/``` to compress a directory into a gzip tarball
 
-6. cpio
+6\. cpio
 
 alternative archiving to tar
 
@@ -299,7 +312,7 @@ root@tutorial:$ find /etc -name "*.conf" | cpio -ov etcbackup.cpio
 root@tutorial:$ cpio -iv < etcbackup.cpio
 ```
 
-7. dd or ddrescue
+7\. dd or ddrescue
 
 dd does a bite-like copy of your data. you can tell it the byte size of the chunks you want to copy over per operation with the bs= flag. Careful if you combine the bs= flag with the count= flag you could actually have data loss. 
 
@@ -318,13 +331,13 @@ you can then use the rescue log to retry failed blocks
 ```bash
 root@tutorial:$ ddrescue -r3 /dev/sdX /mnt/backup/recovery.img rescue.log
 ```
-## manage files & transfers
+## Manage files & transfers
 
 ```ls -li``` gives us the inode of a file. File's inode are unique which means that if you do a hard link you're pointing to an inode.
 
 By using a soft (symbolic) link you're not linking by inode but by file name which breaks as soon as you move or rename the original file
 
-1. rsync
+1\. rsync
 
 source and destination need rsync installed
 
@@ -339,7 +352,7 @@ root@tutorial:$ rsync -avz --delete /root proxmox01:/destination/ >> /tmp/transf
 - v is for verbose
 - --delete removes remote files that were deleted locally
 
-2. scp
+2\. scp
 
 ```bash
 root@tutorial:$ scp -r /root proxmox01:/destination/ -P 2025
@@ -347,11 +360,15 @@ root@tutorial:$ scp -r /root proxmox01:/destination/ -P 2025
 
 Transfer your files from /root recursively into proxmox01 over tcp port 2025
 
-3. sftp
+3\. sftp
 
 you get a cli where you ``get`` and ``put`` files
 
-4. netcat
+4\. tftp
+
+you get a cli where you ``get`` and ``put`` files. The difference here is that there is no authentication
+
+5\. netcat
 
 can be used to test open ports and transfer files between machines
 
@@ -364,6 +381,8 @@ This command checks if the smtp port is open by sending a STARTTLS command to th
 - z stands for scanning
 - v stands for verbose
 
+Netcat can also be used to send files around
+
 ```bash
 root@server:$ nc -lvp 7788
 ```
@@ -374,9 +393,9 @@ server listens on 7788
 root@client:$ nc 192.168.178.5 7788 < testfile.txt
 ```
 
-## partitions
+## Partitions
 
-1. fdisk
+1\. fdisk
 
 you can use fdisk to manage partitions. Let's take an example creating a LUKS encrypted ext4 partition
 
@@ -395,26 +414,25 @@ root@client:$ mount /dev/mapper/crypt /mnt
 
 create a partition by typing:
 
-- g Create a new GPT partition table (optional but recommended)
+- g:  Create a new GPT partition table (optional but recommended)
 
-- n Create a new partition (accept defaults unless you have specific size needs)
+- n:  Create a new partition (accept defaults unless you have specific size needs)
 
-- t Change the partition type
+- t:  Change the partition type
 
     For LUKS, type 8300 (Linux filesystem)
 
-- w Write and exit
+- w:  Write and exit
 
-2. parted
+2\. parted
 
-the flags are slightly different but it's essentially the same as fdisk but it has nice extra features like scripts, file system creation  and has a gui version of its own.
-be careful when deleting or creating anything on parted as it does all changes in place with no need to commit our changes like fdisk
+the flags are slightly different but it's essentially the same as fdisk but it has nice extra features like scripts, file system creation and has a gui version of its own. Be careful when deleting or creating anything on parted as it does all changes in place with no need to commit our changes like fdisk
 
-3. partprobe
+3\. partprobe
 
 inform OS of partition changes
 
-4. fsck
+4\. fsck
 
 very useful when partition is damaged. 
 
@@ -422,11 +440,11 @@ If windows ntfs is broken you can try to fix it by mounting a fedora server iso,
 
 you can use ```apt-get -y install gsmartcontrol``` to check your drive's health
 
-5. tune2fs
+5\. tune2fs
 
-you can change the frequency of fsck (or e2fsck) running on your partition
+you can change the frequency of fsck (or e2fsck) running on your partition. This scan frequency is usually configured on the /etc/fstab
 
-6. resize2fs
+6\. resize2fs
 
 > How would you expand the storage on ext4 after allocating more space to a VM?
 
@@ -435,8 +453,11 @@ You must begin with the partition unmounted. If you can't unmount it (e.g. it's 
 Run parted, or gparted if you prefer a GUI, and resize the partition to use the extra space. I prefer gparted as it gives you a nice graphical representation, very similar to the one you've drawn in your question.
 
 (parted) select /dev/sdX
+
 (parted) resizepart
+
 (parted) 100%
+
 
 ```bash
 root@client:$ resize2fs /dev/whatever
@@ -459,10 +480,10 @@ root@client:$ df -h
 
 ### Mounting partitions 
 
-0. on the command line: 
+0\. on the command line: 
 Problem is it won't persist with a reboot
 
-1. automatically with fstab:
+1\. automatically with fstab:
 
 in the fstab here's what each section does:
 - first section specifies what you want to mount i.e. the target partition
@@ -472,14 +493,15 @@ in the fstab here's what each section does:
 - next one is the dump section. most modern systems don't use the dump aka "backup" section anymore 
 - next one is the pass section. 1 is the highest priority when running fsck on boot, 0 means no checks and 2 means it is checked after the disks in that have pass=1. Advantage of the 2 is that it can run in parallel to other pass=2 disks. Another advantage is that, if a disk with pass=1 in /etc/fstab is faulty or fails fsck, the system may not boot normally and can drop you into emergency mode. Be aware that this option will be overriden by the tune2fs frequency
 
-2. automatically with systemd
+2\. automatically with systemd
 
 you can stop an existing mount with systemd
 
 all relevant files can be found under /run/systemd/generator
 
+3\. with autofs
 
-## LVM
+### LVM
 
 skipped. i'm planning to use zfs or btrfs for personal use and ceph at work. It makes no sense for me (right now) to learn LVM
 
@@ -562,7 +584,7 @@ root@smbclient:$ mount -t cifs //192.168.1.5/home/sambauser/share /mnt/share -o 
 
 ```
 
-## managing services
+## Managing services
 
 ### systemctl
 
@@ -576,17 +598,17 @@ root@tutorial:$ systemctl stop nginx.service # stopped and masked
 root@tutorial:$ systemctl start nginx.service # won't work
 ```
 
-### cron
+### crontab
 
 on ubuntu place your bash scripts within the /etc/cron.daily
 
 crontab -e creates a user crontab that can be listed with ```crontab -l```
 
-## processes
+## Processes
 
 you can edit the fields that appear in top by typping f
 
-lsof can be used to look at open files at any moment in time
+```lsof``` can be used to look at open files at any moment in time
 
 You can look at the open files for a specific pid
 
@@ -637,7 +659,7 @@ you can later change the value if you so wish
 root@tutorial:$ renice -10 -p 6849
 ```
 
-## managing interfaces
+## Managing interfaces
 
 You can see who is online on a computer with the command w
 
@@ -727,7 +749,7 @@ You can also get some valuable information regarding the name servers used and t
 root@proxmox07:~# hostname -v thekor.eu
 ```
 
-## networking
+## Networking
 
 nsswitch is a file that decides the priority we set for /etc/hosts vs external dns servers
 
@@ -739,7 +761,7 @@ traceroute works by gradually incrementing the TTL from 1 to n and saving the ou
 
 a tool that merges the ping and traceroute command is called mtr. By merging the two we get to see network statistics like packet loss
 
-## package manager
+## Package manager
 
 dpkg is used to install single packages on debian based systems
 
@@ -749,7 +771,7 @@ rpm is the dpkg analog in the red hat world
 
 you can either restart or reload configuration files. The advantage of reloading is that you won't get downtime
 
-## logging
+## Logging
 
 you can define which error levels/severity get logged by your ring buffer in your /etc/syslog.d/*.conf
 
@@ -761,23 +783,23 @@ root@tutorial:~# journalctl -p 2
 
 systemd service are logged into journalctl  
 
-## public key cryptography
+## Public key cryptography
 
 gpg is used to encrypt files and plays well with the linux keyring. The only problem is that if you're going to be using encrypted files a lot you'll want to encrypt the whole drive instead. As a file grows you'll have to wait a long time as the task is very cpu intensive.
 
 asymetric public key cryptography is fairly simple. Both parties publish their public keys. Once you want to communicate sensitive data then simply use the recipients public key to encrypt the file.
 
-## authentication
+## Authentication
 
 you can use pam to enfore mfa and group policies like users are only allowed to sign in between monday and friday or brute force protection
 
-## harden your system
+## Harden your system
 
-1. you can restrict access to the dmesg kernel messages to administrators only for example.
+1\. you can restrict access to the dmesg kernel messages to administrators only for example.
 
-2. you can edit the /etc/pam.d to improve password quality like minimal length and number of digits or the number of uppercase chars within the password. You can even make sure that at least 2 chars are different compared to the previous password.
+2\. you can edit the /etc/pam.d to improve password quality like minimal length and number of digits or the number of uppercase chars within the password. You can even make sure that at least 2 chars are different compared to the previous password.
 
-3. you can decide to not reply to any icmp messages by tuning your kernel parameters. 
+3\. you can decide to not reply to any icmp messages by tuning your kernel parameters. 
 
 ```bash
 root@tutorial:~# sysctl -w net.ipv4.icmp_echo_ignore_all=1
@@ -792,9 +814,9 @@ root@tutorial:~# cat /proc/sys/net/ipv4/icmp_echo_ignore_all
 1
 ```
 
-4. add selinux?
+4\. Add selinux
 
-## packaging
+## Packaging
 
 be careful when removing packages on ubuntu. You can run this command to see what dependencies are behind each program with ```apt depends``` or see what depends on the program that you are removing ```apt rdepends```
 
@@ -802,13 +824,13 @@ be careful when removing packages on ubuntu. You can run this command to see wha
 root@tutorial:~# apt rdepends nginx
 ```
 
-## user management
+## User management
 
 you can add default files to any user created on a machine by placing them in the /etc/skel directory
 
 you can prevent someone from loging into a system by changing their shell from /bin/bash into /bin/false
 
-## firewalls
+## Firewalls
 
 ### firewalld
 
@@ -891,7 +913,7 @@ root@tutorial:~# ufw delete allow 22
 root@tutorial:~# ufw app list # These profiles are stored in /etc/ufw/applications.d/.
 ```
 
-## access control 
+## Access control 
 
 you can make files immutable and remove the immutability bit
 
@@ -906,7 +928,7 @@ root@tutorial:~# chattr -R +i Dir/
 
 you can make files append only with +a, you can compress or encrypt a file with the +c and +e respectively
 
-### access control lists
+### Access control lists
 
 setfacl and getfactl are used to change the bahvior of some directories. For instance if we nee  all new files in a directory to inherit certain permissions:
 
@@ -926,7 +948,7 @@ root@tutorial:~# getfacl /shared/dir
 
 ```
 
-### apparmor
+### Apparmor
 
 control what files and network ports can be used
  
@@ -942,7 +964,7 @@ root@tutorial:~# aa-enforce /usr/sbin/sssd
 
 Think of it as a strict security policy enforcement tool that decicdes what processes can access which files, sockets, ports, etc.
 
-## permissions
+## Permissions
 
 You can use symbolic notation or octal notation to manage permissions on the file system
 
@@ -1005,7 +1027,7 @@ umask 022
 (...)
 ```
 
-## bash scripting
+## Bash scripting
 
 linux does not look at the file extension to determine if it's a script or not. bash scripts have a shebang at the beginning of the file
 
@@ -1020,14 +1042,14 @@ root@tutorial:~# git checkout v1.0
 
 ```
 
-## infrastructure as code
+## Infrastructure as code
 
 ansible is an agentless. You specify an inventory where you store ip addresses and passwords. You then create a playbook that specifies your desired state.
 
 Keep in mind that json does not support comments
 
 
-## debug network issues
+## Debug network issues
 
 shows statistics for drops or misses:
 
@@ -1043,7 +1065,7 @@ PS C:\Users\Documents> Get-NetAdapter -Name "Ethernet"
 
 ```
 
-## debugging disks
+## Debugging disks
 
 iops is the measurement of speed. Input output per second measures how much data is coming accross per second. You can have a look at those with the iostat command
 
@@ -1074,7 +1096,7 @@ root@tutorial:~# e4defrag /hdd #defragment
 
 ```
 
-## systemd and boot targets
+## Systemd and boot targets
 
 Back in the day linux used to boot with run levels with sysvinit. When the run level is set to 0 the system shuts down, by setting it to 6 it reboots, 1 stands for single user mode and is used for administration tasks because only the root can login. In this mode you can repair issues like file system corruption or grub related issues. At level two you can access you personal files but there is no networking. Level 3 is multi user with networking and level 4 adds a graphical interface. Level 5 is full mode which means you have access to the whole system. 
 
@@ -1103,7 +1125,7 @@ root@tutorial:~# ls /run/systemd/generator/*.mount
 
 ```
 
-## quotas
+## Quotas
 
 you can impose quotas on a docker process by editing the docker compose file. Additionnaly if you're running a docker as a service on a server you shoud consider editing the daemon.json file so that it rotates the logs. By default docker does not delete any logs which could cause your service to crash if you're only using one partition. 
 
