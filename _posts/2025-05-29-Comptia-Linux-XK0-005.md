@@ -11,7 +11,9 @@ render_with_liquid: false
 
 This course is given by John McGovern on CBT nuggets. The purpose of this document is to summarize some of the key learnings I got from it.
 
-## FHS: File Hierarchy Standard
+## Linux, Partitions, Disk
+
+### FHS: File Hierarchy Standard
 
 As opposed to windows systems, /home and /root could be in totally different physical locations whereas in Windows anything below C:\ drive belongs to the C:\ drive 
 
@@ -45,11 +47,11 @@ you can pipe the errors to /dev/null by doing
 
 ```cat /etc/passwd /etc/shadow 2> /dev/null```
 
-## Formatting
+### Formatting
 
 Before using a disk you need to either format it with MBR or GPT partition table. MBR splits your disk into 512 bytes with the first sector is dedicated to the master boot record. By choosing MBR you are limiting the maximum size of your partitions to 2Tb. Another limit is you can create up to 4 partitions.
 
-## Boot
+### Boot
 
 1. UEFI triggers the POST
 1. Power on Self Test or POST is done
@@ -62,11 +64,11 @@ If you want to have a dual boot setup you would edit the /boot/grub/grub.cfg on 
 
 When a computer boots up and does not have a fixed IP address it sends out a DHCP request to receive an ip address. Now either the DHCP server (which can be a firewall for example) has a MAC address reservation or it assigns one from a DHCP pool for a certain time (also known as lease time). Once the lease time is expired the server has the option to re-assign it in case the IP is not currently in use.
 
-## Boot sources
+### Boot sources
 
 ISO mount, usb mount, DVD optical disk, pxe network boot, ipxe network boot
 
-## Kernel panic
+### Kernel panic
 
 Reasons might range from hardware failure, misconfigured driver, incompatible drivers, software hack or simply an update of the kernel?
 
@@ -127,7 +129,7 @@ by removing the -b flag you see the current boot logs
 root@tutorial:$ journalctl --since today | grep -Ei "fail|error|panic"
 ```
 
-## Raid
+### Raid
 
 - RAID 0 – Striping: Data split across drives, no redundancy
 - RAID 1 – Mirroring: redundancy, half space lost
@@ -138,13 +140,13 @@ root@tutorial:$ journalctl --since today | grep -Ei "fail|error|panic"
   - Self-healing: If a block is corrupt, ZFS can automatically repair it using parity
   - No write hole: ZFS uses copy-on-write, avoiding inconsistencies during power loss, which RAID 5 is vulnerable to
 
-## Types of storage
+### Types of storage
 
 1. Block storage: Each block has an address, and the OS or the database decides how to organize it. Better performance for larger files.
 1. Object storage: Each block has a UUID and rich metadata that simplifies the querying. Used in cloud environments like aws s3
 1. Filesystem storage: Organizes data into files and directories
 
-## Mounting directories 
+### Mounting directories 
 
 - sshfs: You can mount filesystems without sudo privileges by using sshfs. It's apparently not great for high-performance I/O workloads but is much easier to setup
 
@@ -154,7 +156,9 @@ root@tutorial:$ journalctl --since today | grep -Ei "fail|error|panic"
 
 - nfs: insecure compared to samba, fast to setup on linux
 
-## Text utilities
+## Utilities
+
+### Text utilities
 
 
 1\. awk
@@ -199,7 +203,7 @@ When using insert mode:
 
 - press dd to remove a line
 
-## Compression and archiving
+### Compression and archiving
 
 1\. gzip
 
@@ -331,7 +335,7 @@ you can then use the rescue log to retry failed blocks
 ```bash
 root@tutorial:$ ddrescue -r3 /dev/sdX /mnt/backup/recovery.img rescue.log
 ```
-## Manage files & transfers
+### Manage files & transfers
 
 ```ls -li``` gives us the inode of a file. File's inode are unique which means that if you do a hard link you're pointing to an inode.
 
@@ -393,7 +397,7 @@ server listens on 7788
 root@client:$ nc 192.168.178.5 7788 < testfile.txt
 ```
 
-## Partitions
+### Managing partitions
 
 1\. fdisk
 
@@ -478,7 +482,7 @@ root@client:$ resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
 root@client:$ df -h
 ```
 
-### Mounting partitions 
+#### Mounting partitions 
 
 0\. on the command line: 
 Problem is it won't persist with a reboot
@@ -501,13 +505,13 @@ all relevant files can be found under /run/systemd/generator
 
 3\. with autofs
 
-### LVM
+#### LVM
 
 skipped. i'm planning to use zfs or btrfs for personal use and ceph at work. It makes no sense for me (right now) to learn LVM
 
-## Sharing file systems over the network
+### Sharing file systems over the network
 
-### nfs
+#### nfs
 
 on the debian server:
 
@@ -539,7 +543,7 @@ root@client:$ nano /etc/fstab
 ```
 notice the pass and dump options are turned off 
 
-### samba
+#### samba
 On the debian server:
 
 ```bash
@@ -584,9 +588,9 @@ root@smbclient:$ mount -t cifs //192.168.1.5/home/sambauser/share /mnt/share -o 
 
 ```
 
-## Managing services
+### Managing services
 
-### systemctl
+#### systemctl
 
 you can mask services so that you won't be able to start it
 
@@ -598,13 +602,13 @@ root@tutorial:$ systemctl stop nginx.service # stopped and masked
 root@tutorial:$ systemctl start nginx.service # won't work
 ```
 
-### crontab
+#### crontab
 
 on ubuntu place your bash scripts within the /etc/cron.daily
 
 crontab -e creates a user crontab that can be listed with ```crontab -l```
 
-## Processes
+### Managing Processes
 
 you can edit the fields that appear in top by typping f
 
@@ -659,7 +663,7 @@ you can later change the value if you so wish
 root@tutorial:$ renice -10 -p 6849
 ```
 
-## Managing interfaces
+### Managing interfaces
 
 You can see who is online on a computer with the command w
 
@@ -749,9 +753,7 @@ You can also get some valuable information regarding the name servers used and t
 root@proxmox07:~# hostname -v thekor.eu
 ```
 
-## Miscellaneous
-
-### Networking
+### Managing networking
 
 nsswitch is a file that decides the priority we set for /etc/hosts vs external dns servers
 
@@ -795,7 +797,7 @@ asymetric public key cryptography is fairly simple. Both parties publish their p
 
 you can use pam to enfore mfa and group policies like users are only allowed to sign in between monday and friday or brute force protection
 
-### Harden your system
+#### Harden your system
 
 1\. you can restrict access to the dmesg kernel messages to administrators only for example.
 
