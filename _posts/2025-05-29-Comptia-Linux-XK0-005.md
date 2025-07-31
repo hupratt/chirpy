@@ -749,7 +749,9 @@ You can also get some valuable information regarding the name servers used and t
 root@proxmox07:~# hostname -v thekor.eu
 ```
 
-## Networking
+## Miscellaneous
+
+### Networking
 
 nsswitch is a file that decides the priority we set for /etc/hosts vs external dns servers
 
@@ -761,7 +763,7 @@ traceroute works by gradually incrementing the TTL from 1 to n and saving the ou
 
 a tool that merges the ping and traceroute command is called mtr. By merging the two we get to see network statistics like packet loss
 
-## Package manager
+### Package manager
 
 dpkg is used to install single packages on debian based systems
 
@@ -771,7 +773,7 @@ rpm is the dpkg analog in the red hat world
 
 you can either restart or reload configuration files. The advantage of reloading is that you won't get downtime
 
-## Logging
+### Logging
 
 you can define which error levels/severity get logged by your ring buffer in your /etc/syslog.d/*.conf
 
@@ -783,17 +785,17 @@ root@tutorial:~# journalctl -p 2
 
 systemd service are logged into journalctl  
 
-## Public key cryptography
+### Public key cryptography
 
 gpg is used to encrypt files and plays well with the linux keyring. The only problem is that if you're going to be using encrypted files a lot you'll want to encrypt the whole drive instead. As a file grows you'll have to wait a long time as the task is very cpu intensive.
 
 asymetric public key cryptography is fairly simple. Both parties publish their public keys. Once you want to communicate sensitive data then simply use the recipients public key to encrypt the file.
 
-## Authentication
+### Authentication
 
 you can use pam to enfore mfa and group policies like users are only allowed to sign in between monday and friday or brute force protection
 
-## Harden your system
+### Harden your system
 
 1\. you can restrict access to the dmesg kernel messages to administrators only for example.
 
@@ -816,7 +818,7 @@ root@tutorial:~# cat /proc/sys/net/ipv4/icmp_echo_ignore_all
 
 4\. Add selinux
 
-## Packaging
+### Packaging
 
 be careful when removing packages on ubuntu. You can run this command to see what dependencies are behind each program with ```apt depends``` or see what depends on the program that you are removing ```apt rdepends```
 
@@ -824,15 +826,15 @@ be careful when removing packages on ubuntu. You can run this command to see wha
 root@tutorial:~# apt rdepends nginx
 ```
 
-## User management
+### User management
 
 you can add default files to any user created on a machine by placing them in the /etc/skel directory
 
 you can prevent someone from loging into a system by changing their shell from /bin/bash into /bin/false
 
-## Firewalls
+### Firewalls
 
-### firewalld
+#### firewalld
 
 Incoming traffic: Blocked unless allowed by zone/service.
 
@@ -858,7 +860,7 @@ root@tutorial:~# firewall-cmd --reload # Changes persist after reboot, but donâ€
 ```
 
 
-### iptables
+#### iptables
 
 tables (filter, nat, mangle, raw, security), chains (INPUT, OUTPUT, FORWARD) and rules. Rules combine chains and tables. Not any table chain combination is allowed. The filter table can only be combined with an input a forward or an outbound chain.
 
@@ -899,7 +901,7 @@ root@tutorial:~# iptables-save > /etc/sysconfig/iptables # red hat
 
 ```
 
-### ufw
+#### ufw
 
 default behavior is the same as firewalld so all outgoing traffic is allowed and all incoming traffic is refused by default
 
@@ -913,7 +915,7 @@ root@tutorial:~# ufw delete allow 22
 root@tutorial:~# ufw app list # These profiles are stored in /etc/ufw/applications.d/.
 ```
 
-## Access control 
+### Access control 
 
 you can make files immutable and remove the immutability bit
 
@@ -928,7 +930,7 @@ root@tutorial:~# chattr -R +i Dir/
 
 you can make files append only with +a, you can compress or encrypt a file with the +c and +e respectively
 
-### Access control lists
+#### Access control lists
 
 setfacl and getfactl are used to change the bahvior of some directories. For instance if we nee  all new files in a directory to inherit certain permissions:
 
@@ -948,7 +950,7 @@ root@tutorial:~# getfacl /shared/dir
 
 ```
 
-### Apparmor
+#### Apparmor
 
 control what files and network ports can be used
  
@@ -960,11 +962,11 @@ root@tutorial:~# aa-enforce /usr/sbin/sssd
 
 ```
 
-### selinux
+#### selinux
 
 Think of it as a strict security policy enforcement tool that decicdes what processes can access which files, sockets, ports, etc.
 
-## Permissions
+### Permissions
 
 You can use symbolic notation or octal notation to manage permissions on the file system
 
@@ -1027,11 +1029,11 @@ umask 022
 (...)
 ```
 
-## Bash scripting
+### Bash scripting
 
 linux does not look at the file extension to determine if it's a script or not. bash scripts have a shebang at the beginning of the file
 
-## git
+### git
 
 you can checkout particular commits by specifying the commit hash which will detach you from the branch where you were working. 
 
@@ -1042,14 +1044,14 @@ root@tutorial:~# git checkout v1.0
 
 ```
 
-## Infrastructure as code
+### Infrastructure as code
 
 ansible is an agentless. You specify an inventory where you store ip addresses and passwords. You then create a playbook that specifies your desired state.
 
 Keep in mind that json does not support comments
 
 
-## Debug network issues
+### Debug network issues
 
 shows statistics for drops or misses:
 
@@ -1065,7 +1067,7 @@ PS C:\Users\Documents> Get-NetAdapter -Name "Ethernet"
 
 ```
 
-## Debugging disks
+### Debugging disks
 
 iops is the measurement of speed. Input output per second measures how much data is coming accross per second. You can have a look at those with the iostat command
 
@@ -1096,7 +1098,7 @@ root@tutorial:~# e4defrag /hdd #defragment
 
 ```
 
-## Systemd and boot targets
+### Systemd and boot targets
 
 Back in the day linux used to boot with run levels with sysvinit. When the run level is set to 0 the system shuts down, by setting it to 6 it reboots, 1 stands for single user mode and is used for administration tasks because only the root can login. In this mode you can repair issues like file system corruption or grub related issues. At level two you can access you personal files but there is no networking. Level 3 is multi user with networking and level 4 adds a graphical interface. Level 5 is full mode which means you have access to the whole system. 
 
@@ -1125,7 +1127,7 @@ root@tutorial:~# ls /run/systemd/generator/*.mount
 
 ```
 
-## Quotas
+### Quotas
 
 you can impose quotas on a docker process by editing the docker compose file. Additionnaly if you're running a docker as a service on a server you shoud consider editing the daemon.json file so that it rotates the logs. By default docker does not delete any logs which could cause your service to crash if you're only using one partition. 
 
@@ -1145,7 +1147,7 @@ root@tutorial:~# quota
 
 careful before modifying existing quotas you have to disable existing ones otherwise you risk damaging the file system
 
-## The 3 2 1 backup rule
+### The 3 2 1 backup rule
 
 3 total copies of your data: your working copy, primary backup and secondary backup
 2 different types of storage media: which could either be a local SSD, a NAS, bluray
