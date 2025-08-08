@@ -53,8 +53,8 @@ To achieve syncronization you will want to create read only snapshots of your tw
 ```console
 [root@nb-hpratt /]# btrfs subvolume snapshot -r /home/ /home/.snapshot/@snapshot_20241102
 Create a readonly snapshot of '/home/' in '/home/.snapshot/@snapshot_20241102'
-[root@nb-hpratt /]# btrfs subvolume snapshot -r / /root/.snapshot/@snapshot_20241102
-Create a readonly snapshot of '/' in '/root/.snapshot/@snapshot_20241102'
+[root@nb-hpratt /]# btrfs subvolume snapshot -r / /.snapshot/@snapshot_20241102
+Create a readonly snapshot of '/' in '/.snapshot/@snapshot_20241102'
 
 ```
 
@@ -65,7 +65,7 @@ Which now added those two snapshots into your list of subvolumes
 ID 256 gen 255569 top level 5 path root
 ID 257 gen 255569 top level 5 path home
 ID 280 gen 255568 top level 257 path home/.snapshot/@snapshot_20241102
-ID 281 gen 255569 top level 256 path root/.snapshot/@snapshot_20241102
+ID 281 gen 255569 top level 256 path .snapshot/@snapshot_20241102
 ```
 
 Snapshots in btrfs are not just file copies they are snapshots that record the incremental changes that happened in that subvolume
@@ -78,7 +78,7 @@ The first thing we will do is mount the btrfs system into /mnt and to make the p
 
 ```console
 [root@nb-hpratt /]# btrfs property set -ts /mnt/home ro true
-[root@nb-hpratt /]# btrfs property set -ts /mnt/root ro true
+[root@nb-hpratt /]# btrfs property set -ts /mnt ro true
 
 ```
 
@@ -93,7 +93,7 @@ What this does is send over all of the incremental changes that were done since 
 Now repeat the process for the root directory
 
 ```console
-[root@nb-hpratt /]# btrfs send -p /mnt/root /mnt/root/.snapshot/@snapshot_20241102 | ssh root@10.10.85.171 "btrfs receive /root/.snapshot"
+[root@nb-hpratt /]# btrfs send -p /mnt/root /mnt/.snapshot/@snapshot_20241102 | ssh root@10.10.85.171 "btrfs receive /.snapshot"
 ```
 
 You now have two perfectly synchronized systems. The only thing you would need to do on the target backup system to use the latest version is to 1. change the fstab file, 2. allow read/write on the snapshots and 3. reboot:
@@ -122,7 +122,7 @@ UUID=0df06d0a-b446-4da4-92fe-43b0e54aab54 /home                   btrfs   subvol
 
 ```console
 [root@nb-hpratt /]# btrfs property set -ts /home/.snapshot/@snapshot_20241102 ro false
-[root@nb-hpratt /]# btrfs property set -ts /root/.snapshot/@snapshot_20241102 ro false
+[root@nb-hpratt /]# btrfs property set -ts /.snapshot/@snapshot_20241102 ro false
 
 ```
 
