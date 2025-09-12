@@ -1,5 +1,5 @@
 ---
-title: haproxy part 2 load balancing a webserver
+title: haproxy part 2 the dataplaneapi
 author: hugo
 date: 2025-09-08 09:11:00 +0200
 categories: [Tutorial, infrastructure]

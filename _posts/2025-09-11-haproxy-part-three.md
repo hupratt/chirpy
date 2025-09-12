@@ -1,5 +1,5 @@
 ---
-title: haproxy part 3 load balancing a webserver
+title: haproxy part 3 the Virtual Router Redundancy Protocol  
 author: hugo
 date: 2025-09-11 09:11:00 +0200
 categories: [Tutorial, infrastructure]
