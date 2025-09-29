@@ -3,7 +3,7 @@ title: Bypassing netflix's paywall BS
 author: hugo
 date: 2025-09-29 09:11:00 +0200
 categories: [Tutorial, infrastructure]
-tags: [sysadmin, networking]
+tags: [sysadmin, networking, rustdesk, dnsmasq, wireguard]
 render_with_liquid: false
 ---
 
@@ -178,8 +178,13 @@ root@zotac:$ nmcli con modify MyHomeWiFI ipv4.ignore-auto-dns yes
 root@zotac:$ nmcli con up MyHomeWiFI
 ```
 
-### Plug'n'play
+#### Plug'n'play
 
 Now, the only thing left to do is connect to the wpa access point that we configured on the mini pc and watch the traffic flow to the tunnel using tcpdump or bmon to get an overview of the number of packets or the network speeds that we are getting.
+
+### Conclusion
+
+Hope you enjoyed todays read. It turned out to be a lot more intricate than I initially planned which only makes the end goal all the more enjoyable. See you on the next one
+
 
 Cheers
