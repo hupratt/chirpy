@@ -15,7 +15,7 @@ I've received a notice recently from my streaming provider that upset me quite a
 
 As this is new to me and I don't spend my free time reading the terms of service, I quickly realized I shared my account without knowing it is illegal. I live far away from my parents so I gave them access since I don't watch netflix that often anyways.
 
-I'm not a fan of these corporate practices and since I don't it's fair for them to throttle my access I'll simply bypass their controls. I'll start off by setting up a remote access so that I can configure everything from afar and a jump box to configure a mini pc. The mini pc is a Zotac ZBOX CI321 nano and has a Realtek network card that allows it to be set into AP mode. As the OS a fedora 42 server is used to configure the networking and the VPN tunnel.
+I'm not a fan of these greedy practices and won't put up with them virtually throttling my access. I'll start off by setting up a remote access so that I can configure everything from afar and configure a jump box to route my traffic through a mini pc back to my gateway. The mini pc is a Zotac ZBOX CI321 nano and has a Realtek network card that allows it to be set into AP mode. As the OS a fedora 42 server is used to configure the networking and the VPN tunnel.
 
 ![iframe](</assets/img/posts/7bb1-zbox-cover.jpg>)
 
