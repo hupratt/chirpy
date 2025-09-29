@@ -156,7 +156,7 @@ It sounds simple to do but there are two problems. Firstly, I can't simply "root
 
 The second hurdle to getting the traffic to flow right is to handle ipv6 traffic. If you try to resolve netflix.com you get 3 ipv4 and 3 ipv6 addresses back. As I can't control which route the TV chooses I'll have to setup a rogue DNS server that forwards all of the traffic to one ipv4 address and ignore the other 5 addresses. I could also setup the name resolution with dnsmasq and create an A record that would point to all 3 ipv4 addresses but I'll keep it simple for now and use the pihole GUI.
 
-Wireguard can't forward ipv6 addresses so this was the only way I found to make this work without messing with complicated iptables rules.
+Wireguard supports ipv6 so I could theoretically just do a full tunnel and pass it all the ipv4 and ipv6 traffic. The only problem in this equation is that my ISP doesn't support ipv6 which means I can't forward ipv6 addresses. This is not the most elegant solution but it's the only way I found to make this work without messing with complicated iptables rules.
 
 
 #### Setting up the access point
