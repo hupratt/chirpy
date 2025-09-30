@@ -173,14 +173,86 @@ root@zotac:$ nmcli con modify MyHomeWiFI 802-11-wireless-security.group ccmp
 root@zotac:$ nmcli con modify MyHomeWiFI 802-11-wireless-security.pairwise ccmp
 root@zotac:$ nmcli con modify MyHomeWiFI 802-11-wireless-security.psk MaxPass21
 root@zotac:$ nmcli con modify MyHomeWiFI ipv4.method shared
-root@zotac:$ nmcli con modify MyHomeWiFI ipv4.dns "10.10.0.105"
+root@zotac:$ nmcli con modify MyHomeWiFI ipv4.dns ""
 root@zotac:$ nmcli con modify MyHomeWiFI ipv4.ignore-auto-dns yes
+root@zotac:$ nmcli con modify MyHomeWiFI +ipv4.dns-search ""
+root@zotac:$ nmcli con modify MyHomeWiFI ipv4.dns-priority -42
+root@zotac:$ nmcli con modify MyHomeWiFI connection.autoconnect yes
 root@zotac:$ nmcli con up MyHomeWiFI
 ```
+
+disable systemd-resolved as we don't want to introduce another DNS resolver on our system
+
+```bash
+root@zotac:$ systemctl disable systemd-resolved && systemctl stop systemd-resolved
+root@zotac:$ rm /etc/resolv.conf
+root@zotac:$ echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" | tee /etc/resolv.conf
+root@zotac:$ chattr +i /etc/resolv.conf
+```
+
+create a custom dns entry for the access point's DHCP pool
+
+```bash
+root@zotac:$ cat <<EOF > /etc/NetworkManager/dnsmasq-shared.d/custom.conf
+no-resolv
+server=10.10.85.105
+dhcp-option=6,10.10.85.105
+EOF
+```
+
+restart NetworkManager and make sure it's advertising the right DNS 
+
+```bash
+root@zotac:$ systemctl restart NetworkManager
+root@zotac:$ journalctl -xeu NetworkManager -f
+```
+
+![iframe](</assets/img/posts/swappy-20250930-165325.png>)
+
+append the ipv6.disable=1 flag to your grub boot options
+
+```bash
+root@zotac:$ nano /etc/default/grub
+(...)
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash ipv6.disable=1"
+
+root@zotac:$ grub2-mkconfig -o /boot/grub2/grub.cfg
+root@zotac:$ reboot
+```
+
 
 #### Plug'n'play
 
 Now, the only thing left to do is connect to the wpa access point that we configured on the mini pc and watch the traffic flow to the tunnel using tcpdump or bmon to get an overview of the number of packets or the network speeds that we are getting.
+
+Here's some valuable views: 
+
+- See the unencrypted traffic flowing between netflix and the wireguard's endpoint
+
+```bash
+root@zotac:$ tcpdump -i wg0 -n | grep 10.60.5.2
+```
+
+![iframe](</assets/img/posts/swappy-20250930-165157.png>)
+
+- Make sure there is no http/https traffic flowing to the local gateway:
+
+```bash
+root@zotac:$ tcpdump port 443 -i enp5s0 -n
+```
+
+- Look at the encrypted traffic leaving from the local gateway to my wireguard server's public IP
+
+```bash
+root@zotac:$ tcpdump port <vpn_port> -i enp5s0 -n
+```
+
+- On the server-side, look at what enpoints the Toshiba smart tv is reaching out to grab the netflix content 
+
+```bash
+root@zotac:$ tcpdump port 443 -i wg2 -n
+```
+
 
 ### Conclusion
 
