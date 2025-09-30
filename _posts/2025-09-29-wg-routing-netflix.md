@@ -9,19 +9,21 @@ render_with_liquid: false
 
 ### Introduction
 
-I've received a notice recently from my streaming provider that upset me quite a bit. I've been a loyal netflix customer since 5 years only to get locked out of my account like a criminal. Instead of relaxing on the couch with my significant other, I was debugging the situation and unable to log in to my account.
+I've received a notice recently from my streaming provider that upset me quite a bit. I've been a loyal netflix customer since 5 years only to get locked out of my account like a criminal. Instead of relaxing on the couch with my significant other, I was debugging the situation sitting on the floor of my living room.
 
 ![iframe](</assets/img/posts/netflix-locked-me-out-of-my-pc-v0-zejhzx512lye1.jpg>)
 
-As this is new to me and I don't spend my free time reading the terms of service, I quickly realized I shared my account without knowing it is illegal. I live far away from my parents so I gave them access since I don't watch netflix that often anyways.
+As this is new to me and I don't spend my free time reading the terms of service, I quickly realized I had done something wrong by sharing my account. I live far away from my parents so I gave them access since I don't watch netflix that often anyways.
 
-I'm not a fan of these greedy practices and won't put up with them virtually throttling my access. I'll start off by setting up a remote access so that I can configure everything from afar and configure a jump box to route my traffic through a mini pc back to my gateway. The mini pc is a Zotac ZBOX CI321 nano and has a Realtek network card that allows it to be set into AP mode. As the OS a fedora 42 server is used to configure the networking and the VPN tunnel.
+I'm not a fan of these greedy practices and won't put up with them virtually throttling my access so I'll just spoof my own address at my parents place and redirect all of the traffic so that it looks like we are in the same household. 
+
+To achieve this, I'll start off by setting up a remote access so that I can configure everything from afar and find a way to route my traffic through a mini pc back, through their router and out from my gateway. The mini pc is a Zotac ZBOX CI321 nano and has a Realtek network card that allows it to be set into AP mode. The OS I chose is a fedora 42 server to configure the networking and the VPN tunnel.
 
 ![iframe](</assets/img/posts/7bb1-zbox-cover.jpg>)
 
-The diagram of what we are trying to set up would look something like this
+The diagram of what we are trying to set up would look something like this:
 
-TV --> zotac --> router --> my house
+TV running netflix --> zotac --> parents router --> my router --> netflix
 
 The TV connects to the mini pc over wi-fi, the zotac mini pc then connects to the LAN over cabled ethernet and some packets are redirected through the wireguard tunnel to my house.
 
@@ -250,7 +252,7 @@ root@zotac:$ tcpdump port <vpn_port> -i enp5s0 -n
 - On the server-side, look at what enpoints the Toshiba smart tv is reaching out to grab the netflix content 
 
 ```bash
-root@zotac:$ tcpdump port 443 -i wg2 -n
+wireguard-alpine:$ tcpdump port 443 -i wg2 -n
 ```
 
 
