@@ -19,18 +19,17 @@ I'm not a fan of these greedy practices and won't put up with them virtually thr
 
 To achieve this, I'll start off by setting up a remote access so that I can configure everything from afar and find a way to route my traffic through a mini pc back, through their router and out from my gateway. The mini pc is a Zotac ZBOX CI321 nano and has a Realtek network card that allows it to be set into AP mode. The OS I chose is a fedora 42 server to configure the networking and the VPN tunnel.
 
-![iframe](</assets/img/posts/7bb1-zbox-cover.jpg>)
-
 The diagram of what we are trying to set up would look something like this:
 
-TV running netflix --> zotac --> parents router --> my router --> netflix
+![iframe](</assets/img/posts/netflix vpndiagram.png>)
+
 
 The TV connects to the mini pc over wi-fi, the zotac mini pc then connects to the LAN over cabled ethernet and some packets are redirected through the wireguard tunnel to my house.
 
 
 #### Remote access
 
-Start up this docker compose setup on a VPS to install Rustdesk. Once started you should get access to a public key generated here: ./data/id_ed25519.pub which you'll use later on the rustdesk clients
+Start up this docker compose setup on a VPS to install [Rustdesk](https://rustdesk.com/). Once started you should get access to a public key generated here: ./data/id_ed25519.pub which you'll use later on the rustdesk clients
 
 ```yaml
 services:
