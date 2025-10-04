@@ -264,6 +264,13 @@ No resources found in dev namespace.
 ```
 And just like that, the "pods is forbidden" error is gone.
 
+#### Load balancer
+
+Back in our load balancer dashboard the only thing left to configure is the tcp/443 to tcp/8443 forwarding and you're ready to go
+
+![iframe](</assets/img/posts/swappy-20251004-214152.png>)
+
+
 ### Conclusion
 
 In the coming weeks I'll be looking into statefulsets and how to manage databases in kubernetes. I hope you're enjoying it so far and I will see you on the next one.
