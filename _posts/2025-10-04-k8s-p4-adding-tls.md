@@ -123,6 +123,13 @@ if you wish you can copy the certificate locally to have a look at what's inside
 kubectl get secret wildcard-cloud2-tls -n cert-manager -o yaml > tls-secret.yaml
 ```
 
+Now the only thing left to do is configure the ingress controller to read the secret. [We had previously set up](https://chirpy.thekor.eu/posts/k8s-p2/) an endpoint on tcp/8080 and we will now add the TLS encryption
+
+[Here's the previous manifest](https://raw.githubusercontent.com/hupratt/kubernetes-the-hard-way/refs/heads/v1/kubeconfiguration/6-ingress-mongoexpress.yaml) and [here is the new one](https://raw.githubusercontent.com/hupratt/kubernetes-the-hard-way/refs/heads/part4/kubeconfiguration/6-ingress-mongoexpress.yaml).
+
+Since the name is the same on both configuration, applying the new manifest should update the existing one. Once that is done, your ingress controller should be exposing 8080 and 8443 to the internet. Later on we will set a load balancer in front of our cluster to forward incoming :80 and :443 to :8080 and :8443 respectively.
+
+
 #### Role based access control RBAC
 
 Let's create a kubectl config (sa.kubeconfig) that represents a service account for developers to read their logs
