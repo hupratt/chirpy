@@ -231,6 +231,14 @@ And there you have it ! A fresh blog waiting to tackle new challenges. I could o
 
 Once you want to rollout a change simply go through the steps below and watch the deployment create a new replicaset with the new version, spin up a new pod, redirect the traffic to the new pod and terminate the old replicaset. And all of this happened seamlessly and no downtime. Absolutely beautiful.
 
+Build a new release
+
+```bash
+docker compose build && docker push registry.thekor.eu/github/chirpy:latest
+```
+
+And rollout the changes:
+
 ![iframe](</assets/img/posts/swappy-20251018-203613.png>)
 
 Hope you enjoyed this one and I wish you a good evening/afternoon/morning wherever you are. 
