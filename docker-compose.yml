@@ -1,8 +1,8 @@
-version: "3.8"
 services:
   jekyll_dev:
     build: .
-    restart: always
+    restart: unless-stopped
+    image: registry.thekor.eu/github/chirpy:latest
     container_name: chirpy
     ports:
       - "4000:4000"
@@ -12,13 +12,8 @@ services:
     # /bundle volume to the `jekyll_dev` containers ~/bundle path.
     volumes_from:
       - bundle
-# Replace "PROJECT" with the name of the image created by "docker-compose build".
-# Sometimes it's just the name of the directory that the docker-compose file is in
   bundle:
-    # 'image' will vary depending on your docker-compose
-    # project name. You may need to run `docker-compose build`
-    # before this works.
-    image: hupratt/jekyll_dev:latest
+    image: registry.thekor.eu/github/chirpy:latest
     restart: always
     volumes:
       - /bundle
