@@ -1,0 +1,224 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define gradients and styles -->
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5CB85C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#449D44;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0AD4E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC971F;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8E44AD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#F8F9FA"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#2C3E50" text-anchor="middle">
+    Jekyll Blog Deployment Workflow
+  </text>
+  
+  <!-- OLD WAY Section -->
+  <text x="200" y="90" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#E74C3C" text-anchor="middle">
+    OLD WAY ❌
+  </text>
+  <rect x="50" y="100" width="300" height="180" rx="10" fill="#FFE5E5" stroke="#E74C3C" stroke-width="2" filter="url(#shadow)"/>
+  
+  <!-- Old workflow steps -->
+  <text x="200" y="130" font-family="Arial, sans-serif" font-size="14" fill="#2C3E50" text-anchor="middle" font-weight="bold">
+    Manual Docker Compose
+  </text>
+  <text x="70" y="160" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    1. SSH into server
+  </text>
+  <text x="70" y="185" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    2. Run: git pull
+  </text>
+  <text x="70" y="210" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    3. Run: docker compose up -d
+  </text>
+  <text x="70" y="235" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    4. Run: --build flag
+  </text>
+  <text x="200" y="265" font-family="Arial, sans-serif" font-size="12" fill="#E74C3C" text-anchor="middle" font-style="italic">
+    ⚠ Manual, error-prone
+  </text>
+  
+  <!-- NEW WAY Section -->
+  <text x="1000" y="90" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#5CB85C" text-anchor="middle">
+    NEW WAY ✓
+  </text>
+  <rect x="850" y="100" width="300" height="180" rx="10" fill="#E8F8E8" stroke="#5CB85C" stroke-width="2" filter="url(#shadow)"/>
+  
+  <!-- New workflow steps -->
+  <text x="1000" y="130" font-family="Arial, sans-serif" font-size="14" fill="#2C3E50" text-anchor="middle" font-weight="bold">
+    Automated Kubernetes Deploy
+  </text>
+  <text x="870" y="160" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    1. Push to GitLab Registry
+  </text>
+  <text x="870" y="185" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    2. Cluster auto-pulls image
+  </text>
+  <text x="870" y="210" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    3. Automatic deployment
+  </text>
+  <text x="870" y="235" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    4. Wildcard certs ready!
+  </text>
+  <text x="1000" y="265" font-family="Arial, sans-serif" font-size="12" fill="#5CB85C" text-anchor="middle" font-style="italic">
+    ✨ Automated, reliable
+  </text>
+
+  <!-- Main Workflow -->
+  
+  <!-- Step 1: Jekyll Blog Code -->
+  <rect x="50" y="350" width="180" height="100" rx="10" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="140" y="385" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">
+    📝 Jekyll Blog
+  </text>
+  <text x="140" y="410" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">
+    Source Code
+  </text>
+  <text x="140" y="430" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">
+    (Git Repository)
+  </text>
+  
+  <!-- Arrow 1 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2C3E50" />
+    </marker>
+  </defs>
+  <line x1="230" y1="400" x2="290" y2="400" stroke="#2C3E50" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <text x="260" y="390" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50" text-anchor="middle">
+    Push
+  </text>
+  
+  <!-- Step 2: Build Docker Image -->
+  <rect x="290" y="350" width="180" height="100" rx="10" fill="url(#orangeGrad)" filter="url(#shadow)"/>
+  <text x="380" y="385" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">
+    🐳 Docker Build
+  </text>
+  <text x="380" y="410" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">
+    Create Container
+  </text>
+  <text x="380" y="430" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">
+    Image
+  </text>
+  
+  <!-- Arrow 2 -->
+  <line x1="470" y1="400" x2="530" y2="400" stroke="#2C3E50" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <text x="500" y="390" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50" text-anchor="middle">
+    Push
+  </text>
+  
+  <!-- Step 3: GitLab Registry -->
+  <rect x="530" y="350" width="180" height="100" rx="10" fill="url(#purpleGrad)" filter="url(#shadow)"/>
+  <text x="620" y="385" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">
+    🦊 GitLab
+  </text>
+  <text x="620" y="410" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">
+    Container Registry
+  </text>
+  <text x="620" y="430" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">
+    (Image Storage)
+  </text>
+  
+  <!-- Arrow 3 -->
+  <line x1="710" y1="400" x2="770" y2="400" stroke="#2C3E50" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <text x="740" y="390" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50" text-anchor="middle">
+    Trigger
+  </text>
+  
+  <!-- Step 4: Proxmox Cluster -->
+  <rect x="770" y="320" width="200" height="160" rx="10" fill="url(#greenGrad)" filter="url(#shadow)"/>
+  <text x="870" y="355" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">
+    ☸️ Proxmox Cluster
+  </text>
+  <text x="870" y="380" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">
+    Kubernetes
+  </text>
+  <rect x="790" y="390" width="160" height="75" rx="5" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1"/>
+  <text x="870" y="410" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">
+    • Auto-pull image
+  </text>
+  <text x="870" y="428" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">
+    • Deploy pods
+  </text>
+  <text x="870" y="446" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">
+    • Load balancing
+  </text>
+  
+  <!-- Arrow 4 (downward) -->
+  <line x1="870" y1="480" x2="870" y2="540" stroke="#2C3E50" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 5: Cert Manager & HTTPS -->
+  <rect x="770" y="540" width="200" height="100" rx="10" fill="url(#redGrad)" filter="url(#shadow)"/>
+  <text x="870" y="575" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">
+    🔒 Cert Manager
+  </text>
+  <text x="870" y="600" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">
+    Wildcard Certificates
+  </text>
+  <text x="870" y="620" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">
+    (HTTPS Ready!)
+  </text>
+  
+  <!-- Arrow 5 (to live site) -->
+  <line x1="970" y1="590" x2="1030" y2="590" stroke="#2C3E50" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 6: Live Blog -->
+  <rect x="1030" y="540" width="150" height="100" rx="10" fill="#27AE60" filter="url(#shadow)" stroke="#1E8449" stroke-width="2"/>
+  <text x="1105" y="575" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle">
+    🌐
+  </text>
+  <text x="1105" y="600" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">
+    Live Blog!
+  </text>
+  <text x="1105" y="620" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">
+    https://blog.*
+  </text>
+  
+  <!-- Benefits Box -->
+  <rect x="50" y="660" width="1130" height="120" rx="10" fill="#EAF2F8" stroke="#3498DB" stroke-width="2" filter="url(#shadow)"/>
+  <text x="615" y="690" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">
+    🎯 Benefits of the New Workflow
+  </text>
+  
+  <text x="80" y="720" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    ✓ Automated deployment - no manual SSH needed
+  </text>
+  <text x="80" y="745" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    ✓ Version control - rollback capability
+  </text>
+  <text x="80" y="770" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    ✓ Scalable infrastructure with Kubernetes
+  </text>
+  
+  <text x="650" y="720" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    ✓ Centralized container registry
+  </text>
+  <text x="650" y="745" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    ✓ Automatic HTTPS with cert-manager
+  </text>
+  <text x="650" y="770" font-family="Arial, sans-serif" font-size="13" fill="#34495E">
+    ✓ Production-ready DevOps practices
+  </text>
+</svg>
