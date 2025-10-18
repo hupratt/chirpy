@@ -227,7 +227,11 @@ kubectl apply -f https://raw.githubusercontent.com/hupratt/kubernetes-the-hard-w
 kubectl apply -f https://raw.githubusercontent.com/hupratt/kubernetes-the-hard-way/refs/heads/part6/kubeconfiguration/deploy/chirpy/ingress.yaml
 ```
 
-And there you have it ! A fresh blog waiting to tackle new challenges. I could of course automate this further with a gitlab runner, CI/CD pipelines and webhooks but it's good enough for now.  
+And there you have it ! A fresh blog waiting to tackle new challenges. I could of course automate this further with a gitlab runner, CI/CD pipelines and webhooks but it's good enough for now.
+
+Once you want to rollout a change simply go through the steps below and watch the deployment create a new replicaset with the new version, spin up a new pod, redirect the traffic to the new pod and terminate the old replicaset. And all of this happened seamlessly and no downtime. Absolutely beautiful.
+
+![iframe](</assets/img/posts/swappy-20251018-203613.png>)
 
 Hope you enjoyed this one and I wish you a good evening/afternoon/morning wherever you are. 
 
