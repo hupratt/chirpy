@@ -17,6 +17,8 @@ This is the first stepping stone into actually migrating my whole docker stack i
 
 ### Preparing for the deployment
 
+#### Docker image
+
 Building the image is as simple as adding a couple of lines to the docker compose file to point to our gitlab's container registry
 
 ```yaml
@@ -63,6 +65,8 @@ docker login registry.thekor.eu
 docker push registry.thekor.eu/github/chirpy:kube
 ```
 
+#### Gitlab
+
 Gitlab's config should look like this if you're running an haproxy reverse proxy to handle the gitlab TLS certificates
 
 ```yaml
@@ -105,6 +109,8 @@ nano /etc/docker/daemon.json
 }
 ```
 
+#### Routing
+
 The incoming queries from the internet get masqueraded to the reverse proxy below who either forwards the TCP stream to kubernete's haproxy reverse proxy (kube-backend backend) who then terminates the SSL connection or forwards to another http reverse proxy (tcp-444-backend backend) that houses my legacy docker stack.
 
 My reverse proxy's haproxy.cfg looks like this: 
@@ -137,13 +143,11 @@ backend kube-backend
     server kube3 <kube node ip>:8443
 ```
 
-### The k8s deployment
+#### ceph
 
-Now that all the planets are aligned we can trigger the kubernetes deployment and ingress. Like I said earlier we are currently building upon [the proxmox cluster we set up earlier](https://chirpy.thekor.eu/posts/k8s-p3/) which is using ceph as the distributed file system. We created in that article a storage called "rook-ceph-block" which, as the name suggests, allows us to create block storage for our database. The use case with our blog however requires us to persist files in a file-based structure. Ceph naturally supports this with its own cephfs implementation but we will have to enable it. 
+Like I said earlier we are currently building upon [the proxmox cluster we set up earlier](https://chirpy.thekor.eu/posts/k8s-p3/) which is using ceph as the distributed storage. We created in that article a storage called "rook-ceph-block" which, as the name suggests, allows us to create block storage for our databases. The use case with our blog however requires us to persist files in a file-based structure. Ceph naturally supports this with its own cephfs implementation but we will have to enable it. 
 
-#### Setting up the cephfs
-
-The file system's name should correspond to your storage classes' fsName and pool nam
+The file system's name should correspond to your storage classes' "fsName" and "pool" name
 
 ```bash
 git clone --single-branch --branch v1.15.3 https://github.com/rook/rook.git
@@ -196,7 +200,7 @@ EOF
 kubectl apply -f fs.yaml
 ```
 
-and attach to the toolbox container [we created earlier](https://chirpy.thekor.eu/posts/ceph/): 
+and attach to the toolbox container [we created earlier](https://chirpy.thekor.eu/posts/ceph/) to see it: 
 
 ```sh
 kubectl -n rook-ceph get cephfilesystem myfs -w  
@@ -208,7 +212,9 @@ myfs-metadata
 myfs-data0
 ```
 
-We can now create the actual blog itself i.e. the docker-secret, the wildcard certificate, the deployment and the ingress
+### The deployment
+
+Now that all the planets are aligned we can trigger the kubernetes deployment and ingress. The blog is comprised of a docker-secret, the wildcard certificate, the deployment and the ingress:
 
 ```bash
 kubectl create namespace chirpy
@@ -227,9 +233,9 @@ kubectl apply -f https://raw.githubusercontent.com/hupratt/kubernetes-the-hard-w
 kubectl apply -f https://raw.githubusercontent.com/hupratt/kubernetes-the-hard-way/refs/heads/part6/kubeconfiguration/deploy/chirpy/ingress.yaml
 ```
 
-And there you have it ! A fresh blog waiting to tackle new challenges. I could of course automate this further with a gitlab runner, CI/CD pipelines and webhooks but it's good enough for now.
+And there you have it ! A fresh blog waiting to tackle new challenges and geek out on the latest tech. I could of course automate this further with a gitlab runner, CI/CD pipelines and webhooks but it's good enough for now.
 
-Once you want to rollout a change simply go through the steps below and watch the deployment create a new replicaset with the new version, spin up a new pod, redirect the traffic to the new pod and terminate the old replicaset. And all of this happened seamlessly and no downtime. Absolutely beautiful.
+Once you want to rollout a change simply go through the steps below and watch the deployment create a new replicaset with the new version, spin up a new pod, redirect the traffic to the new pod and terminate the old replicaset. And all of this happened seamlessly with no downtime. Absolutely beautiful.
 
 Build a new release
 
