@@ -15,7 +15,7 @@ render_with_liquid: false
 Can you think of a more dreadful business as weapons manufacturers? I would expect there to be some consensus on this in 2023 as well as some oversight and rules to whom you could sell and not sell to right? You wouldn’t want to help dictators and other bigwigs oppress minorities and dissidents. You would be surprised to know that not everyone agrees with this point of view of course. Check out this exclusive interview of an entrepreneur based in Greece that tells you exactly what he thinks of weaponized software and morality. It’s quite ironic to find a company violating people’s right to privacy in what is known as the birthplace of democracy. On the video below Tal Dilio was interviewed by Forbes and shows how easy it is to hijack someone’s phone. For a mere 9 million dollars you can buy this fully equipped van to spy on anyone within 500 meters and bypass whatsapp encryption.
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/A-Multimillionaire-Forbes.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="400px" src="https://minio-api.thekor.eu/chirpy-videos-f1492f08-f236-4a55-afb7-70ded209cb28/chirpy/A-Multimillionaire-Forbes.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 
@@ -129,7 +129,7 @@ Just like in our previous showcases I like to complement the code with a use cas
 
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/evil%20twin.mp4
+<iframe width="100%" height="400px" src="https://minio-api.thekor.eu/chirpy-videos-f1492f08-f236-4a55-afb7-70ded209cb28/chirpy/evil%20twin.mp4
 " title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 

@@ -31,7 +31,7 @@ A picture is worth a thousand words so [here is a link](https://www.thekor.eu/) 
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
 
-<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/portfolio-presentation-2023-03-28%2019-22-49.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="400px" src="https://minio-api.thekor.eu/chirpy-videos-f1492f08-f236-4a55-afb7-70ded209cb28/chirpy/portfolio-presentation-2023-03-28%2019-22-49.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 </div>
 

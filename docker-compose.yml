@@ -1,19 +1,8 @@
 services:
-  jekyll_dev:
+  jekyll:
     build: .
     restart: unless-stopped
     image: registry.thekor.eu/github/chirpy:latest
     container_name: chirpy
     ports:
       - "4000:4000"
-    volumes:
-      - ./theproject:/home/myuser/app
-    # This tells the web container to mount the `bundle` images'
-    # /bundle volume to the `jekyll_dev` containers ~/bundle path.
-    volumes_from:
-      - bundle
-  bundle:
-    image: registry.thekor.eu/github/chirpy:latest
-    restart: always
-    volumes:
-      - /bundle

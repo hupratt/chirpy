@@ -18,7 +18,7 @@ At first Ron, the shop owner, assumes it's blackmail and that Elliot is in it fo
 These exploits greatly inspired me to take a deep dive into this world of social engineers, penetration tests and malware. The video below is an extract of his confrontation with Ron
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/Elliot%20Hacks%20A%20Pedophile%20Mr.%20Robot.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="400px" src="https://minio-api.thekor.eu/chirpy-videos-f1492f08-f236-4a55-afb7-70ded209cb28/chirpy/Elliot%20Hacks%20A%20Pedophile%20Mr.%20Robot.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 Getting a foothold into a network is one of the first steps in compromising your target. I've written a blog post that explains how to do deploy those on Android and linux systems [here](https://chirpy.thekor.eu/posts/trying-out-an-android-rat/) and [here](https://chirpy.thekor.eu/posts/installing-a-trojan-on-linux/)
@@ -250,7 +250,7 @@ if __name__ == '__main__':
 ## Video
 
 <div style="padding-top: 5px; padding-bottom: 5px; position:relative; display:block; width: 100%; min-height:400px">
-<iframe width="100%" height="400px" src="https://youtube.thekor.eu/uploads/netgear/Videos/chirpy/dns%20spoof2.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="400px" src="https://minio-api.thekor.eu/chirpy-videos-f1492f08-f236-4a55-afb7-70ded209cb28/chirpy/dns%20spoof2.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 ## Conclusion
